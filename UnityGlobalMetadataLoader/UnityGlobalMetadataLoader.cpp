@@ -84,6 +84,16 @@ typedef struct Il2CppGlobalMetadataHeader
 } Il2CppGlobalMetadataHeader;
 #pragma pack(pop, p1)
 
+int length(const unsigned char* s)
+{
+	int i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return i;
+}
+
 int main(int argc, char* argv[])
 {
 	if (argc < 2)
@@ -132,8 +142,10 @@ int main(int argc, char* argv[])
 	printf("%d 0x%X\n", header->stringLiteralDataOffset, header->stringLiteralDataOffset);
 	std::cout << header->stringLiteralDataCount << std::endl;
 	std::cout << header->stringOffset << std::endl;
-	std::cout << header->stringCount << std::endl;
-	
+	printf("string count %d\n", header->stringCount);
+	printf("events count %d\n", header->eventsCount);
+	printf("properties count %d\n", header->propertiesCount);
+
 	int stringLiteralTableCount = header->stringLiteralCount / sizeof(Il2CppStringLiteral);
 
 	printf("stringLiteral size %d\n", stringLiteralTableCount);
@@ -151,8 +163,12 @@ int main(int argc, char* argv[])
 		delete[] stringLiteral;
 	}
 
-	//const unsigned char* stringTable = metadata + header->stringOffset;
-	//printf("%s", stringTable);
+	for (int i = 0; i < header->stringCount; i++)
+	{
+		const unsigned char* string = metadata + header->stringOffset + i;
+		int l = length(string);
+		i += l;
+	}
 
 	delete[] metadata;
 	return 0;
