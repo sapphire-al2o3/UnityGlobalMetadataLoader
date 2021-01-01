@@ -1,0 +1,3 @@
+# UnityGlobalMetadataLoader
+
+Unityのglobal-metadata.datにある文字列リテラルを読み込む
