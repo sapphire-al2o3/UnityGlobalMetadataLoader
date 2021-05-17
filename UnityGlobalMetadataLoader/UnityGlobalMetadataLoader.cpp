@@ -140,11 +140,40 @@ int main(int argc, char* argv[])
 	std::cout << header->stringLiteralCount << std::endl;
 	//std::cout << header->stringLiteralDataOffset << std::endl;
 	printf("%d 0x%X\n", header->stringLiteralDataOffset, header->stringLiteralDataOffset);
-	std::cout << header->stringLiteralDataCount << std::endl;
+	//std::cout << header->stringLiteralDataCount << std::endl;
 	std::cout << header->stringOffset << std::endl;
+	printf("stringLiteralData count %d\n", header->stringLiteralDataCount);
 	printf("string count %d\n", header->stringCount);
 	printf("events count %d\n", header->eventsCount);
 	printf("properties count %d\n", header->propertiesCount);
+	printf("methods count %d\n", header->methodsCount);
+	printf("parameterDefaultValues count %d offset 0x%X\n", header->parameterDefaultValuesCount, header->parameterDefaultValuesOffset);
+	printf("fieldDefaultValues count %d\n", header->fieldDefaultValuesCount);
+	printf("fieldAndParameterDefaultValueData count %d offset 0x%X\n", header->fieldAndParameterDefaultValueDataCount, header->fieldAndParameterDefaultValueDataOffset);
+	printf("fieldMarshaledSizes count %d offset 0x%X\n", header->fieldMarshaledSizesCount, header->fieldMarshaledSizesOffset);
+	printf("parameters count %d\n", header->parametersCount);
+	printf("fields count %d\n", header->fieldsCount);
+	printf("genericParameters count %d\n", header->genericParametersCount);
+	printf("genericParameterConstraintscount %d\n", header->genericParameterConstraintsCount);
+	printf("genericContainersCount count %d\n", header->genericContainersCount);
+	printf("nestedTypesCount count %d\n", header->nestedTypesCount);
+	printf("interfacesCount count %d\n", header->interfacesCount);
+	printf("vtableMethodsCount count %d\n", header->vtableMethodsCount);
+	printf("interfaceOffsetsCount count %d\n", header->interfaceOffsetsCount);
+	printf("typeDefinitionsCount count %d\n", header->typeDefinitionsCount);
+	printf("rgctxEntriesCount count %d\n", header->rgctxEntriesCount);
+	printf("imagesCount count %d\n", header->imagesCount);
+	printf("assembliesCount count %d\n", header->assembliesCount);
+	printf("metadataUsageListsCount count %d\n", header->metadataUsageListsCount);
+	printf("metadataUsagePairsCount count %d\n", header->metadataUsagePairsCount);
+	printf("fieldRefsCount count %d\n", header->fieldRefsCount);
+	printf("referencedAssembliesCount count %d\n", header->referencedAssembliesCount);
+	printf("attributesInfoCount count %d\n", header->attributesInfoCount);
+	printf("attributeTypesCount count %d\n", header->attributeTypesCount);
+	printf("unresolvedVirtualCallParameterTypesCount count %d\n", header->unresolvedVirtualCallParameterTypesCount);
+	printf("unresolvedVirtualCallParameterRangesCount count %d\n", header->unresolvedVirtualCallParameterRangesCount);
+	printf("windowsRuntimeTypeNamesSize %d\n", header->windowsRuntimeTypeNamesSize);
+	printf("exportedTypeDefinitionsCount count %d\n", header->exportedTypeDefinitionsCount);
 
 	int stringLiteralTableCount = header->stringLiteralCount / sizeof(Il2CppStringLiteral);
 
@@ -159,7 +188,7 @@ int main(int argc, char* argv[])
 		stringLiteral[stringLiteralTable[i].length] = '\0';
 		unsigned char* stringLiteralData = metadata + header->stringLiteralDataOffset + stringLiteralTable[i].dataIndex;
 		memcpy(stringLiteral, stringLiteralData, stringLiteralTable[i].length);
-		printf("%s [0x%X]\n", stringLiteral, stringLiteralTable[i].dataIndex);
+		//printf("%s [0x%X]\n", stringLiteral, stringLiteralTable[i].dataIndex);
 		delete[] stringLiteral;
 	}
 
