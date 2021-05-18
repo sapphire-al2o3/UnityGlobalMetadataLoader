@@ -143,10 +143,10 @@ int main(int argc, char* argv[])
 	//std::cout << header->stringLiteralDataCount << std::endl;
 	std::cout << header->stringOffset << std::endl;
 	printf("stringLiteralData count %d\n", header->stringLiteralDataCount);
-	printf("string count %d\n", header->stringCount);
-	printf("events count %d\n", header->eventsCount);
-	printf("properties count %d\n", header->propertiesCount);
-	printf("methods count %d\n", header->methodsCount);
+	printf("string count %d offset 0x%X\n", header->stringCount, header->stringOffset);
+	printf("events count %d offset 0x%X\n", header->eventsCount, header->eventsOffset);
+	printf("properties count offset 0x%X %d\n", header->propertiesCount, header->propertiesOffset);
+	printf("methods count offset 0x%X %d\n", header->methodsCount, header->methodsOffset);
 	printf("parameterDefaultValues count %d offset 0x%X\n", header->parameterDefaultValuesCount, header->parameterDefaultValuesOffset);
 	printf("fieldDefaultValues count %d\n", header->fieldDefaultValuesCount);
 	printf("fieldAndParameterDefaultValueData count %d offset 0x%X\n", header->fieldAndParameterDefaultValueDataCount, header->fieldAndParameterDefaultValueDataOffset);
