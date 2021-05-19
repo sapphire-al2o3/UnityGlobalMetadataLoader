@@ -136,13 +136,8 @@ int main(int argc, char* argv[])
 	printf("%X\n", header->sanity);
 	std::cout << header->version << std::endl;
 	//std::cout << header->stringLiteralOffset << std::endl;
-	printf("%d 0x%X\n", header->stringLiteralOffset, header->stringLiteralOffset);
-	std::cout << header->stringLiteralCount << std::endl;
-	//std::cout << header->stringLiteralDataOffset << std::endl;
-	printf("%d 0x%X\n", header->stringLiteralDataOffset, header->stringLiteralDataOffset);
-	//std::cout << header->stringLiteralDataCount << std::endl;
-	std::cout << header->stringOffset << std::endl;
-	printf("stringLiteralData count %d\n", header->stringLiteralDataCount);
+	printf("stringLiteral count %d 0x%X\n", header->stringLiteralCount, header->stringLiteralOffset);
+	printf("stringLiteralData count %d offset 0x%X\n", header->stringLiteralDataCount, header->stringLiteralDataOffset);
 	printf("string count %d offset 0x%X\n", header->stringCount, header->stringOffset);
 	printf("events count %d offset 0x%X\n", header->eventsCount, header->eventsOffset);
 	printf("properties count offset 0x%X %d\n", header->propertiesCount, header->propertiesOffset);
