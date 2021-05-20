@@ -154,21 +154,21 @@ int main(int argc, char* argv[])
 	printf("nestedTypesCount count %d offset 0x%X\n", header->nestedTypesCount, header->nestedTypesOffset);
 	printf("interfacesCount count %d offset 0x%X\n", header->interfacesCount, header->interfacesOffset);
 	printf("vtableMethodsCount count %d offset 0x%X\n", header->vtableMethodsCount, header->vtableMethodsOffset);
-	printf("interfaceOffsetsCount count %d\n", header->interfaceOffsetsCount);
-	printf("typeDefinitionsCount count %d\n", header->typeDefinitionsCount);
-	printf("rgctxEntriesCount count %d\n", header->rgctxEntriesCount);
-	printf("imagesCount count %d\n", header->imagesCount);
-	printf("assembliesCount count %d\n", header->assembliesCount);
-	printf("metadataUsageListsCount count %d\n", header->metadataUsageListsCount);
-	printf("metadataUsagePairsCount count %d\n", header->metadataUsagePairsCount);
-	printf("fieldRefsCount count %d\n", header->fieldRefsCount);
-	printf("referencedAssembliesCount count %d\n", header->referencedAssembliesCount);
-	printf("attributesInfoCount count %d\n", header->attributesInfoCount);
-	printf("attributeTypesCount count %d\n", header->attributeTypesCount);
-	printf("unresolvedVirtualCallParameterTypesCount count %d\n", header->unresolvedVirtualCallParameterTypesCount);
-	printf("unresolvedVirtualCallParameterRangesCount count %d\n", header->unresolvedVirtualCallParameterRangesCount);
-	printf("windowsRuntimeTypeNamesSize %d\n", header->windowsRuntimeTypeNamesSize);
-	printf("exportedTypeDefinitionsCount count %d\n", header->exportedTypeDefinitionsCount);
+	printf("interfaceOffsetsCount count %d offset 0x%X\n", header->interfaceOffsetsCount, header->interfaceOffsetsOffset);
+	printf("typeDefinitionsCount count %d offset 0x%X\n", header->typeDefinitionsCount, header->typeDefinitionsOffset);
+	printf("rgctxEntriesCount count %d offset 0x%X\n", header->rgctxEntriesCount, header->rgctxEntriesOffset);
+	printf("imagesCount count %d offset 0x%X\n", header->imagesCount, header->imagesOffset);
+	printf("assembliesCount count %d offset 0x%X\n", header->assembliesCount, header->assembliesOffset);
+	printf("metadataUsageListsCount count %d offset 0x%X\n", header->metadataUsageListsCount, header->metadataUsageListsOffset);
+	printf("metadataUsagePairsCount count %d offset 0x%X\n", header->metadataUsagePairsCount, header->metadataUsagePairsOffset);
+	printf("fieldRefsCount count %d offset 0x%X\n", header->fieldRefsCount, header->fieldRefsOffset);
+	printf("referencedAssembliesCount count %d offset 0x%X\n", header->referencedAssembliesCount, header->referencedAssembliesOffset);
+	printf("attributesInfoCount count %d offset 0x%X\n", header->attributesInfoCount, header->attributesInfoOffset);
+	printf("attributeTypesCount count %d offset 0x%X\n", header->attributeTypesCount, header->attributeTypesOffset);
+	printf("unresolvedVirtualCallParameterTypesCount count %d offset 0x%X\n", header->unresolvedVirtualCallParameterTypesCount, header->unresolvedVirtualCallParameterTypesOffset);
+	printf("unresolvedVirtualCallParameterRangesCount count %d offset 0x%X\n", header->unresolvedVirtualCallParameterRangesCount, header->unresolvedVirtualCallParameterRangesOffset);
+	printf("windowsRuntimeTypeNamesSize %d offset 0x%X\n", header->windowsRuntimeTypeNamesSize, header->windowsRuntimeTypeNamesOffset);
+	printf("exportedTypeDefinitionsCount count %d offset 0x%X\n", header->exportedTypeDefinitionsCount, header->exportedTypeDefinitionsOffset);
 
 	int stringLiteralTableCount = header->stringLiteralCount / sizeof(Il2CppStringLiteral);
 
