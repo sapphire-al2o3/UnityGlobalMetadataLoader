@@ -2,13 +2,56 @@
 #include <iostream>
 #include <stdio.h>
 
+typedef int32_t TypeIndex;
+typedef int32_t TypeDefinitionIndex;
+typedef int32_t FieldIndex;
+typedef int32_t DefaultValueIndex;
+typedef int32_t DefaultValueDataIndex;
+typedef int32_t CustomAttributeIndex;
+typedef int32_t ParameterIndex;
+typedef int32_t MethodIndex;
+typedef int32_t GenericMethodIndex;
+typedef int32_t PropertyIndex;
+typedef int32_t EventIndex;
+typedef int32_t GenericContainerIndex;
+typedef int32_t GenericParameterIndex;
+typedef int16_t GenericParameterConstraintIndex;
+typedef int32_t NestedTypeIndex;
+typedef int32_t InterfacesIndex;
+typedef int32_t VTableIndex;
+typedef int32_t InterfaceOffsetIndex;
+typedef int32_t RGCTXIndex;
+typedef int32_t StringIndex;
 typedef int32_t StringLiteralIndex;
+typedef int32_t GenericInstIndex;
+typedef int32_t ImageIndex;
+typedef int32_t AssemblyIndex;
+typedef int32_t InteropDataIndex;
 
 typedef struct Il2CppStringLiteral
 {
 	uint32_t length;
 	StringLiteralIndex dataIndex;
 } Il2CppStringLiteral;
+
+typedef struct Il2CppMethodDefinition
+{
+	StringIndex nameIndex;
+	TypeDefinitionIndex declaringType;
+	TypeIndex returnType;
+	ParameterIndex parameterStart;
+	GenericContainerIndex genericContainerIndex;
+	MethodIndex methodIndex;
+	MethodIndex invokerIndex;
+	MethodIndex reversePInvokeWrapperIndex;
+	RGCTXIndex rgctxStartIndex;
+	int32_t rgctxCount;
+	uint32_t token;
+	uint16_t flags;
+	uint16_t iflags;
+	uint16_t slot;
+	uint16_t parameterCount;
+} Il2CppMethodDefinition;
 
 #pragma pack(push, p1, 4)
 typedef struct Il2CppGlobalMetadataHeader
@@ -185,6 +228,13 @@ int main(int argc, char* argv[])
 		memcpy(stringLiteral, stringLiteralData, stringLiteralTable[i].length);
 		//printf("%s [0x%X]\n", stringLiteral, stringLiteralTable[i].dataIndex);
 		delete[] stringLiteral;
+	}
+
+	int methodInfoDefinitionTableCount = header->methodsCount / sizeof(Il2CppMethodDefinition);
+	printf("method size %d\n", methodInfoDefinitionTableCount);
+
+	for (int i = 0; i < methodInfoDefinitionTableCount; i++)
+	{
 	}
 
 	for (int i = 0; i < header->stringCount; i++)
