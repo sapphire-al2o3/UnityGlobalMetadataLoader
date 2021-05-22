@@ -153,6 +153,8 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 
+	bool printStringLiteral = false;
+
 	fseek(fp, 0, SEEK_END);
 	size_t size = ftell(fp);
 
@@ -217,17 +219,20 @@ int main(int argc, char* argv[])
 
 	printf("stringLiteral size %d\n", stringLiteralTableCount);
 
-	Il2CppStringLiteral* stringLiteralTable = reinterpret_cast<Il2CppStringLiteral*>(metadata + header->stringLiteralOffset);
-
-	// print stringLiteral
-	for (int i = 0; i < stringLiteralTableCount; i++)
+	if (printStringLiteral)
 	{
-		char* stringLiteral = new char[stringLiteralTable[i].length + 1];
-		stringLiteral[stringLiteralTable[i].length] = '\0';
-		unsigned char* stringLiteralData = metadata + header->stringLiteralDataOffset + stringLiteralTable[i].dataIndex;
-		memcpy(stringLiteral, stringLiteralData, stringLiteralTable[i].length);
-		//printf("%s [0x%X]\n", stringLiteral, stringLiteralTable[i].dataIndex);
-		delete[] stringLiteral;
+		Il2CppStringLiteral* stringLiteralTable = reinterpret_cast<Il2CppStringLiteral*>(metadata + header->stringLiteralOffset);
+
+		// print stringLiteral
+		for (int i = 0; i < stringLiteralTableCount; i++)
+		{
+			char* stringLiteral = new char[stringLiteralTable[i].length + 1];
+			stringLiteral[stringLiteralTable[i].length] = '\0';
+			unsigned char* stringLiteralData = metadata + header->stringLiteralDataOffset + stringLiteralTable[i].dataIndex;
+			memcpy(stringLiteral, stringLiteralData, stringLiteralTable[i].length);
+			printf("%s [0x%X]\n", stringLiteral, stringLiteralTable[i].dataIndex);
+			delete[] stringLiteral;
+		}
 	}
 
 	int methodInfoDefinitionTableCount = header->methodsCount / sizeof(Il2CppMethodDefinition);
