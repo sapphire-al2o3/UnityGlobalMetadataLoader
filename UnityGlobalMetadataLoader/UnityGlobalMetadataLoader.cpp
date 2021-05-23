@@ -155,6 +155,19 @@ int main(int argc, char* argv[])
 
 	bool printStringLiteral = false;
 
+	if (argc > 2)
+	{
+		if (argv[2][0] == '-')
+		{
+			switch (argv[2][1])
+			{
+			case 'l':
+				printStringLiteral = true;
+				break;
+			}
+		}
+	}
+
 	fseek(fp, 0, SEEK_END);
 	size_t size = ftell(fp);
 
