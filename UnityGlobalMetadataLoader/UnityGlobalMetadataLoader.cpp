@@ -154,15 +154,19 @@ int main(int argc, char* argv[])
 	}
 
 	bool printStringLiteral = false;
+	bool printString = false;
 
-	if (argc > 2)
+	for (int i = 2; i < argc; i++)
 	{
-		if (argv[2][0] == '-')
+		if (argv[i][0] == '-')
 		{
-			switch (argv[2][1])
+			switch (argv[i][1])
 			{
 			case 'l':
 				printStringLiteral = true;
+				break;
+			case 's':
+				printString = true;
 				break;
 			}
 		}
@@ -255,11 +259,15 @@ int main(int argc, char* argv[])
 	{
 	}
 
-	for (int i = 0; i < header->stringCount; i++)
+	if (printString)
 	{
-		const unsigned char* string = metadata + header->stringOffset + i;
-		int l = length(string);
-		i += l;
+		for (int i = 0; i < header->stringCount; i++)
+		{
+			const unsigned char* string = metadata + header->stringOffset + i;
+			int l = length(string);
+			printf("%s\n", string);
+			i += l;
+		}
 	}
 
 	delete[] metadata;
