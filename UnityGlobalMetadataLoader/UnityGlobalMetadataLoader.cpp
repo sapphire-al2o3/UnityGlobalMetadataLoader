@@ -196,8 +196,7 @@ int main(int argc, char* argv[])
 	}
 
 	printf("%X\n", header->sanity);
-	std::cout << header->version << std::endl;
-	//std::cout << header->stringLiteralOffset << std::endl;
+	printf("version %d\n", header->version);
 	printf("stringLiteral count %d 0x%X\n", header->stringLiteralCount, header->stringLiteralOffset);
 	printf("stringLiteralData count %d offset 0x%X\n", header->stringLiteralDataCount, header->stringLiteralDataOffset);
 	printf("string count %d offset 0x%X\n", header->stringCount, header->stringOffset);
