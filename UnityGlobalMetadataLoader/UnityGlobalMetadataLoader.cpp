@@ -269,7 +269,8 @@ int main(int argc, char* argv[])
 
     int stringLiteralTableCount = header->stringLiteralCount / sizeof(Il2CppStringLiteral);
 
-    printf("total size%d\n", totalSize);
+    printf("-------------------------------------------\n");
+    printf("total size %d\n", totalSize);
 
     printf("stringLiteral size %d\n", stringLiteralTableCount);
 
