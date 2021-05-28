@@ -195,6 +195,42 @@ int main(int argc, char* argv[])
         return 0;
     }
 
+    int totalSize = 0;
+    totalSize += header->stringLiteralCount;
+    totalSize += header->stringLiteralDataCount;
+    totalSize += header->stringCount;
+    totalSize += header->eventsCount;
+    totalSize += header->propertiesCount;
+    totalSize += header->methodsCount;
+    totalSize += header->parameterDefaultValuesCount;
+    totalSize += header->fieldDefaultValuesCount;
+    totalSize += header->fieldAndParameterDefaultValueDataCount;
+    totalSize += header->fieldMarshaledSizesCount;
+    totalSize += header->parametersCount;
+    totalSize += header->fieldsCount;
+    totalSize += header->genericParametersCount;
+    totalSize += header->genericParameterConstraintsCount;
+    totalSize += header->genericContainersCount;
+    totalSize += header->nestedTypesCount;
+    totalSize += header->interfacesCount;
+    totalSize += header->vtableMethodsCount;
+    totalSize += header->interfaceOffsetsCount;
+    totalSize += header->typeDefinitionsCount;
+    totalSize += header->rgctxEntriesCount;
+    totalSize += header->imagesCount;
+    totalSize += header->rgctxEntriesCount;
+    totalSize += header->assembliesCount;
+    totalSize += header->metadataUsageListsCount;
+    totalSize += header->metadataUsagePairsCount;
+    totalSize += header->fieldRefsCount;
+    totalSize += header->referencedAssembliesCount;
+    totalSize += header->attributesInfoCount;
+    totalSize += header->attributeTypesCount;
+    totalSize += header->unresolvedVirtualCallParameterTypesCount;
+    totalSize += header->unresolvedVirtualCallParameterRangesCount;
+    totalSize += header->windowsRuntimeTypeNamesSize;
+    totalSize += header->exportedTypeDefinitionsCount;
+
     printf("%X\n", header->sanity);
     printf("version %d\n", header->version);
     printf("stringLiteral count %d 0x%X\n", header->stringLiteralCount, header->stringLiteralOffset);
@@ -204,7 +240,7 @@ int main(int argc, char* argv[])
     printf("properties count %d offset 0x%X\n", header->propertiesCount, header->propertiesOffset);
     printf("methods count %d offset 0x%X\n", header->methodsCount, header->methodsOffset);
     printf("parameterDefaultValues count %d offset 0x%X\n", header->parameterDefaultValuesCount, header->parameterDefaultValuesOffset);
-    printf("fieldDefaultValues count %d\n", header->fieldDefaultValuesCount);
+    printf("fieldDefaultValues count %d offset 0x%X\n", header->fieldDefaultValuesCount, header->fieldDefaultValuesOffset);
     printf("fieldAndParameterDefaultValueData count %d offset 0x%X\n", header->fieldAndParameterDefaultValueDataCount, header->fieldAndParameterDefaultValueDataOffset);
     printf("fieldMarshaledSizes count %d offset 0x%X\n", header->fieldMarshaledSizesCount, header->fieldMarshaledSizesOffset);
     printf("parameters count %d offset 0x%X\n", header->parametersCount, header->parametersOffset);
@@ -232,6 +268,8 @@ int main(int argc, char* argv[])
     printf("exportedTypeDefinitions count %d offset 0x%X\n", header->exportedTypeDefinitionsCount, header->exportedTypeDefinitionsOffset);
 
     int stringLiteralTableCount = header->stringLiteralCount / sizeof(Il2CppStringLiteral);
+
+    printf("total size%d\n", totalSize);
 
     printf("stringLiteral size %d\n", stringLiteralTableCount);
 
