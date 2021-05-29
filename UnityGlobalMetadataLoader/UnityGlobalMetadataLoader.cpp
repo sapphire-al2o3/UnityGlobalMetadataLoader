@@ -145,8 +145,9 @@ int main(int argc, char* argv[])
         return 0;
     }
 
+    auto path = argv[1];
     FILE* fp;
-    fopen_s(&fp, argv[1], "rb");
+    fopen_s(&fp, path, "rb");
 
     if (fp == nullptr)
     {
@@ -181,6 +182,7 @@ int main(int argc, char* argv[])
     fread(metadata, size, 1, fp);
     fclose(fp);
 
+    printf("%s\n", path);
     printf("size %d\n", size);
 
     Il2CppGlobalMetadataHeader* header = reinterpret_cast<Il2CppGlobalMetadataHeader*>(metadata);
@@ -233,7 +235,7 @@ int main(int argc, char* argv[])
 
     printf("%X\n", header->sanity);
     printf("version %d\n", header->version);
-    printf("stringLiteral count %d 0x%X\n", header->stringLiteralCount, header->stringLiteralOffset);
+    printf("stringLiteral count %d offset 0x%X\n", header->stringLiteralCount, header->stringLiteralOffset);
     printf("stringLiteralData count %d offset 0x%X\n", header->stringLiteralDataCount, header->stringLiteralDataOffset);
     printf("string count %d offset 0x%X\n", header->stringCount, header->stringOffset);
     printf("events count %d offset 0x%X\n", header->eventsCount, header->eventsOffset);
