@@ -183,7 +183,7 @@ int main(int argc, char* argv[])
     fclose(fp);
 
     printf("%s\n", path);
-    printf("size %d\n", size);
+    printf("size %d\n", (int)size);
 
     Il2CppGlobalMetadataHeader* header = reinterpret_cast<Il2CppGlobalMetadataHeader*>(metadata);
 
