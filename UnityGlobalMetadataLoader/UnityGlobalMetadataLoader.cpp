@@ -220,7 +220,6 @@ int main(int argc, char* argv[])
     totalSize += header->typeDefinitionsCount;
     totalSize += header->rgctxEntriesCount;
     totalSize += header->imagesCount;
-    totalSize += header->rgctxEntriesCount;
     totalSize += header->assembliesCount;
     totalSize += header->metadataUsageListsCount;
     totalSize += header->metadataUsagePairsCount;
