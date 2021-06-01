@@ -272,7 +272,7 @@ int main(int argc, char* argv[])
 
     printf("-------------------------------------------\n");
     printf("total size %d\n", totalSize);
-
+    printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader));
     printf("stringLiteral size %d\n", stringLiteralTableCount);
 
     if (printStringLiteral)
