@@ -54,7 +54,7 @@ typedef struct Il2CppMethodDefinition
 } Il2CppMethodDefinition;
 
 #pragma pack(push, p1, 4)
-typedef struct Il2CppGlobalMetadataHeader
+typedef struct Il2CppGlobalMetadataHeader_v24
 {
     int32_t sanity;
     int32_t version;
@@ -124,8 +124,79 @@ typedef struct Il2CppGlobalMetadataHeader
     int32_t windowsRuntimeTypeNamesSize;
     int32_t exportedTypeDefinitionsOffset; // TypeDefinitionIndex
     int32_t exportedTypeDefinitionsCount;
-} Il2CppGlobalMetadataHeader;
+} Il2CppGlobalMetadataHeader_v24;
 #pragma pack(pop, p1)
+
+#pragma pack(push, p1,4)
+typedef struct Il2CppGlobalMetadataHeader_v27
+{
+    int32_t sanity;
+    int32_t version;
+    int32_t stringLiteralOffset; // string data for managed code
+    int32_t stringLiteralCount;
+    int32_t stringLiteralDataOffset;
+    int32_t stringLiteralDataCount;
+    int32_t stringOffset; // string data for metadata
+    int32_t stringCount;
+    int32_t eventsOffset; // Il2CppEventDefinition
+    int32_t eventsCount;
+    int32_t propertiesOffset; // Il2CppPropertyDefinition
+    int32_t propertiesCount;
+    int32_t methodsOffset; // Il2CppMethodDefinition
+    int32_t methodsCount;
+    int32_t parameterDefaultValuesOffset; // Il2CppParameterDefaultValue
+    int32_t parameterDefaultValuesCount;
+    int32_t fieldDefaultValuesOffset; // Il2CppFieldDefaultValue
+    int32_t fieldDefaultValuesCount;
+    int32_t fieldAndParameterDefaultValueDataOffset; // uint8_t
+    int32_t fieldAndParameterDefaultValueDataCount;
+    int32_t fieldMarshaledSizesOffset; // Il2CppFieldMarshaledSize
+    int32_t fieldMarshaledSizesCount;
+    int32_t parametersOffset; // Il2CppParameterDefinition
+    int32_t parametersCount;
+    int32_t fieldsOffset; // Il2CppFieldDefinition
+    int32_t fieldsCount;
+    int32_t genericParametersOffset; // Il2CppGenericParameter
+    int32_t genericParametersCount;
+    int32_t genericParameterConstraintsOffset; // TypeIndex
+    int32_t genericParameterConstraintsCount;
+    int32_t genericContainersOffset; // Il2CppGenericContainer
+    int32_t genericContainersCount;
+    int32_t nestedTypesOffset; // TypeDefinitionIndex
+    int32_t nestedTypesCount;
+    int32_t interfacesOffset; // TypeIndex
+    int32_t interfacesCount;
+    int32_t vtableMethodsOffset; // EncodedMethodIndex
+    int32_t vtableMethodsCount;
+    int32_t interfaceOffsetsOffset; // Il2CppInterfaceOffsetPair
+    int32_t interfaceOffsetsCount;
+    int32_t typeDefinitionsOffset; // Il2CppTypeDefinition
+    int32_t typeDefinitionsCount;
+    int32_t imagesOffset; // Il2CppImageDefinition
+    int32_t imagesCount;
+    int32_t assembliesOffset; // Il2CppAssemblyDefinition
+    int32_t assembliesCount;
+    int32_t fieldRefsOffset; // Il2CppFieldRef
+    int32_t fieldRefsCount;
+    int32_t referencedAssembliesOffset; // int32_t
+    int32_t referencedAssembliesCount;
+    int32_t attributesInfoOffset; // Il2CppCustomAttributeTypeRange
+    int32_t attributesInfoCount;
+    int32_t attributeTypesOffset; // TypeIndex
+    int32_t attributeTypesCount;
+    int32_t unresolvedVirtualCallParameterTypesOffset; // TypeIndex
+    int32_t unresolvedVirtualCallParameterTypesCount;
+    int32_t unresolvedVirtualCallParameterRangesOffset; // Il2CppMetadataRange
+    int32_t unresolvedVirtualCallParameterRangesCount;
+    int32_t windowsRuntimeTypeNamesOffset; // Il2CppWindowsRuntimeTypeNamePair
+    int32_t windowsRuntimeTypeNamesSize;
+    int32_t windowsRuntimeStringsOffset; // const char*
+    int32_t windowsRuntimeStringsSize;
+    int32_t exportedTypeDefinitionsOffset; // TypeDefinitionIndex
+    int32_t exportedTypeDefinitionsCount;
+} Il2CppGlobalMetadataHeader_v27;
+#pragma pack(pop, p1)
+
 
 int length(const unsigned char* s)
 {
@@ -185,7 +256,7 @@ int main(int argc, char* argv[])
     printf("%s\n", path);
     printf("size %d\n", (int)size);
 
-    Il2CppGlobalMetadataHeader* header = reinterpret_cast<Il2CppGlobalMetadataHeader*>(metadata);
+    Il2CppGlobalMetadataHeader_v24* header = reinterpret_cast<Il2CppGlobalMetadataHeader_v24*>(metadata);
 
     if (header->sanity != 0xFAB11BAF)
     {
@@ -232,7 +303,7 @@ int main(int argc, char* argv[])
     totalSize += header->windowsRuntimeTypeNamesSize;
     totalSize += header->exportedTypeDefinitionsCount;
 
-    printf("%X\n", header->sanity);
+    printf("sanity %X\n", header->sanity);
     printf("version %d\n", header->version);
     printf("stringLiteral count %d offset 0x%X\n", header->stringLiteralCount, header->stringLiteralOffset);
     printf("stringLiteralData count %d offset 0x%X\n", header->stringLiteralDataCount, header->stringLiteralDataOffset);
@@ -272,7 +343,7 @@ int main(int argc, char* argv[])
 
     printf("-------------------------------------------\n");
     printf("total size %d\n", totalSize);
-    printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader));
+    printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24));
     printf("stringLiteral size %d\n", stringLiteralTableCount);
 
     if (printStringLiteral)
