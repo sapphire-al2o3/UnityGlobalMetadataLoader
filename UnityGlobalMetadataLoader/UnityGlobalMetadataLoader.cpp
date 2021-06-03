@@ -208,6 +208,82 @@ int length(const unsigned char* s)
     return i;
 }
 
+int getTotalSize(Il2CppGlobalMetadataHeader_v24* header)
+{
+    int totalSize = 0;
+    totalSize += header->stringLiteralCount;
+    totalSize += header->stringLiteralDataCount;
+    totalSize += header->stringCount;
+    totalSize += header->eventsCount;
+    totalSize += header->propertiesCount;
+    totalSize += header->methodsCount;
+    totalSize += header->parameterDefaultValuesCount;
+    totalSize += header->fieldDefaultValuesCount;
+    totalSize += header->fieldAndParameterDefaultValueDataCount;
+    totalSize += header->fieldMarshaledSizesCount;
+    totalSize += header->parametersCount;
+    totalSize += header->fieldsCount;
+    totalSize += header->genericParametersCount;
+    totalSize += header->genericParameterConstraintsCount;
+    totalSize += header->genericContainersCount;
+    totalSize += header->nestedTypesCount;
+    totalSize += header->interfacesCount;
+    totalSize += header->vtableMethodsCount;
+    totalSize += header->interfaceOffsetsCount;
+    totalSize += header->typeDefinitionsCount;
+    totalSize += header->rgctxEntriesCount;
+    totalSize += header->imagesCount;
+    totalSize += header->assembliesCount;
+    totalSize += header->metadataUsageListsCount;
+    totalSize += header->metadataUsagePairsCount;
+    totalSize += header->fieldRefsCount;
+    totalSize += header->referencedAssembliesCount;
+    totalSize += header->attributesInfoCount;
+    totalSize += header->attributeTypesCount;
+    totalSize += header->unresolvedVirtualCallParameterTypesCount;
+    totalSize += header->unresolvedVirtualCallParameterRangesCount;
+    totalSize += header->windowsRuntimeTypeNamesSize;
+    totalSize += header->exportedTypeDefinitionsCount;
+    return totalSize;
+}
+
+int getTotalSize(Il2CppGlobalMetadataHeader_v27* header)
+{
+    int totalSize = 0;
+    totalSize += header->stringLiteralCount;
+    totalSize += header->stringLiteralDataCount;
+    totalSize += header->stringCount;
+    totalSize += header->eventsCount;
+    totalSize += header->propertiesCount;
+    totalSize += header->methodsCount;
+    totalSize += header->parameterDefaultValuesCount;
+    totalSize += header->fieldDefaultValuesCount;
+    totalSize += header->fieldAndParameterDefaultValueDataCount;
+    totalSize += header->fieldMarshaledSizesCount;
+    totalSize += header->parametersCount;
+    totalSize += header->fieldsCount;
+    totalSize += header->genericParametersCount;
+    totalSize += header->genericParameterConstraintsCount;
+    totalSize += header->genericContainersCount;
+    totalSize += header->nestedTypesCount;
+    totalSize += header->interfacesCount;
+    totalSize += header->vtableMethodsCount;
+    totalSize += header->interfaceOffsetsCount;
+    totalSize += header->typeDefinitionsCount;
+    totalSize += header->imagesCount;
+    totalSize += header->assembliesCount;
+    totalSize += header->fieldRefsCount;
+    totalSize += header->referencedAssembliesCount;
+    totalSize += header->attributesInfoCount;
+    totalSize += header->attributeTypesCount;
+    totalSize += header->unresolvedVirtualCallParameterTypesCount;
+    totalSize += header->unresolvedVirtualCallParameterRangesCount;
+    totalSize += header->windowsRuntimeTypeNamesSize;
+    totalSize += header->windowsRuntimeStringsSize;
+    totalSize += header->exportedTypeDefinitionsCount;
+    return totalSize;
+}
+
 int main(int argc, char* argv[])
 {
     if (argc < 2)
@@ -268,40 +344,7 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    int totalSize = 0;
-    totalSize += header->stringLiteralCount;
-    totalSize += header->stringLiteralDataCount;
-    totalSize += header->stringCount;
-    totalSize += header->eventsCount;
-    totalSize += header->propertiesCount;
-    totalSize += header->methodsCount;
-    totalSize += header->parameterDefaultValuesCount;
-    totalSize += header->fieldDefaultValuesCount;
-    totalSize += header->fieldAndParameterDefaultValueDataCount;
-    totalSize += header->fieldMarshaledSizesCount;
-    totalSize += header->parametersCount;
-    totalSize += header->fieldsCount;
-    totalSize += header->genericParametersCount;
-    totalSize += header->genericParameterConstraintsCount;
-    totalSize += header->genericContainersCount;
-    totalSize += header->nestedTypesCount;
-    totalSize += header->interfacesCount;
-    totalSize += header->vtableMethodsCount;
-    totalSize += header->interfaceOffsetsCount;
-    totalSize += header->typeDefinitionsCount;
-    totalSize += header->rgctxEntriesCount;
-    totalSize += header->imagesCount;
-    totalSize += header->assembliesCount;
-    totalSize += header->metadataUsageListsCount;
-    totalSize += header->metadataUsagePairsCount;
-    totalSize += header->fieldRefsCount;
-    totalSize += header->referencedAssembliesCount;
-    totalSize += header->attributesInfoCount;
-    totalSize += header->attributeTypesCount;
-    totalSize += header->unresolvedVirtualCallParameterTypesCount;
-    totalSize += header->unresolvedVirtualCallParameterRangesCount;
-    totalSize += header->windowsRuntimeTypeNamesSize;
-    totalSize += header->exportedTypeDefinitionsCount;
+    int totalSize = getTotalSize(header);
 
     printf("sanity %X\n", header->sanity);
     printf("version %d\n", header->version);
