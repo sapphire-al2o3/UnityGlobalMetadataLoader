@@ -387,10 +387,11 @@ int main(int argc, char* argv[])
     printf("-------------------------------------------\n");
     printf("total size %d\n", totalSize);
     printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24));
-    printf("stringLiteral size %d\n", stringLiteralTableCount);
 
     if (printStringLiteral)
     {
+        printf("stringLiteral size %d\n", stringLiteralTableCount);
+
         Il2CppStringLiteral* stringLiteralTable = reinterpret_cast<Il2CppStringLiteral*>(metadata + header->stringLiteralOffset);
 
         // print stringLiteral
@@ -406,7 +407,6 @@ int main(int argc, char* argv[])
     }
 
     int methodInfoDefinitionTableCount = header->methodsCount / sizeof(Il2CppMethodDefinition);
-    printf("method size %d\n", methodInfoDefinitionTableCount);
 
     for (int i = 0; i < methodInfoDefinitionTableCount; i++)
     {
