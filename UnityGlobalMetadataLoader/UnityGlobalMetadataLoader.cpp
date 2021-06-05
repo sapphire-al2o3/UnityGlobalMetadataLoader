@@ -336,11 +336,13 @@ int main(int argc, char* argv[])
 
     if (header->sanity != 0xFAB11BAF)
     {
+        printf("sanity %X\n", header->sanity);
         return 0;
     }
 
     if (header->version != 24)
     {
+        printf("version %d\n", header->version);
         return 0;
     }
 
