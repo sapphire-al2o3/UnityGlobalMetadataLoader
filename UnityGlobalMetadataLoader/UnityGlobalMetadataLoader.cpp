@@ -247,6 +247,45 @@ int getTotalSize(Il2CppGlobalMetadataHeader_v24* header)
     return totalSize;
 }
 
+void printHeader(Il2CppGlobalMetadataHeader_v24* header)
+{
+    printf("sanity %X\n", header->sanity);
+    printf("version %d\n", header->version);
+    printf("stringLiteral count %d offset 0x%X\n", header->stringLiteralCount, header->stringLiteralOffset);
+    printf("stringLiteralData count %d offset 0x%X\n", header->stringLiteralDataCount, header->stringLiteralDataOffset);
+    printf("string count %d offset 0x%X\n", header->stringCount, header->stringOffset);
+    printf("events count %d offset 0x%X\n", header->eventsCount, header->eventsOffset);
+    printf("properties count %d offset 0x%X\n", header->propertiesCount, header->propertiesOffset);
+    printf("methods count %d offset 0x%X\n", header->methodsCount, header->methodsOffset);
+    printf("parameterDefaultValues count %d offset 0x%X\n", header->parameterDefaultValuesCount, header->parameterDefaultValuesOffset);
+    printf("fieldDefaultValues count %d offset 0x%X\n", header->fieldDefaultValuesCount, header->fieldDefaultValuesOffset);
+    printf("fieldAndParameterDefaultValueData count %d offset 0x%X\n", header->fieldAndParameterDefaultValueDataCount, header->fieldAndParameterDefaultValueDataOffset);
+    printf("fieldMarshaledSizes count %d offset 0x%X\n", header->fieldMarshaledSizesCount, header->fieldMarshaledSizesOffset);
+    printf("parameters count %d offset 0x%X\n", header->parametersCount, header->parametersOffset);
+    printf("fields count %d offset 0x%X\n", header->fieldsCount, header->fieldsOffset);
+    printf("genericParameters count %d offset 0x%X\n", header->genericParametersCount, header->genericParameterConstraintsOffset);
+    printf("genericParameterConstraints count %d offset 0x%X\n", header->genericParameterConstraintsCount, header->genericParameterConstraintsOffset);
+    printf("genericContainers count %d offset 0x%X\n", header->genericContainersCount, header->genericContainersOffset);
+    printf("nestedTypes count %d offset 0x%X\n", header->nestedTypesCount, header->nestedTypesOffset);
+    printf("interfaces count %d offset 0x%X\n", header->interfacesCount, header->interfacesOffset);
+    printf("vtableMethods count %d offset 0x%X\n", header->vtableMethodsCount, header->vtableMethodsOffset);
+    printf("interfaceOffsets count %d offset 0x%X\n", header->interfaceOffsetsCount, header->interfaceOffsetsOffset);
+    printf("typeDefinitions count %d offset 0x%X\n", header->typeDefinitionsCount, header->typeDefinitionsOffset);
+    printf("rgctxEntries count %d offset 0x%X\n", header->rgctxEntriesCount, header->rgctxEntriesOffset);
+    printf("images count %d offset 0x%X\n", header->imagesCount, header->imagesOffset);
+    printf("assemblies count %d offset 0x%X\n", header->assembliesCount, header->assembliesOffset);
+    printf("metadataUsageLists count %d offset 0x%X\n", header->metadataUsageListsCount, header->metadataUsageListsOffset);
+    printf("metadataUsagePairs count %d offset 0x%X\n", header->metadataUsagePairsCount, header->metadataUsagePairsOffset);
+    printf("fieldRefs count %d offset 0x%X\n", header->fieldRefsCount, header->fieldRefsOffset);
+    printf("referencedAssemblies count %d offset 0x%X\n", header->referencedAssembliesCount, header->referencedAssembliesOffset);
+    printf("attributesInfo count %d offset 0x%X\n", header->attributesInfoCount, header->attributesInfoOffset);
+    printf("attributeTypes count %d offset 0x%X\n", header->attributeTypesCount, header->attributeTypesOffset);
+    printf("unresolvedVirtualCallParameterTypes count %d offset 0x%X\n", header->unresolvedVirtualCallParameterTypesCount, header->unresolvedVirtualCallParameterTypesOffset);
+    printf("unresolvedVirtualCallParameterRanges count %d offset 0x%X\n", header->unresolvedVirtualCallParameterRangesCount, header->unresolvedVirtualCallParameterRangesOffset);
+    printf("windowsRuntimeTypeNames size %d offset 0x%X\n", header->windowsRuntimeTypeNamesSize, header->windowsRuntimeTypeNamesOffset);
+    printf("exportedTypeDefinitions count %d offset 0x%X\n", header->exportedTypeDefinitionsCount, header->exportedTypeDefinitionsOffset);
+}
+
 int getTotalSize(Il2CppGlobalMetadataHeader_v27* header)
 {
     int totalSize = 0;
@@ -284,7 +323,43 @@ int getTotalSize(Il2CppGlobalMetadataHeader_v27* header)
     return totalSize;
 }
 
-int main(int argc, char* argv[])
+void printHeader(Il2CppGlobalMetadataHeader_v27* header)
+{
+    printf("sanity %X\n", header->sanity);
+    printf("version %d\n", header->version);
+    printf("stringLiteral count %d offset 0x%X\n", header->stringLiteralCount, header->stringLiteralOffset);
+    printf("stringLiteralData count %d offset 0x%X\n", header->stringLiteralDataCount, header->stringLiteralDataOffset);
+    printf("string count %d offset 0x%X\n", header->stringCount, header->stringOffset);
+    printf("events count %d offset 0x%X\n", header->eventsCount, header->eventsOffset);
+    printf("properties count %d offset 0x%X\n", header->propertiesCount, header->propertiesOffset);
+    printf("methods count %d offset 0x%X\n", header->methodsCount, header->methodsOffset);
+    printf("parameterDefaultValues count %d offset 0x%X\n", header->parameterDefaultValuesCount, header->parameterDefaultValuesOffset);
+    printf("fieldDefaultValues count %d offset 0x%X\n", header->fieldDefaultValuesCount, header->fieldDefaultValuesOffset);
+    printf("fieldAndParameterDefaultValueData count %d offset 0x%X\n", header->fieldAndParameterDefaultValueDataCount, header->fieldAndParameterDefaultValueDataOffset);
+    printf("fieldMarshaledSizes count %d offset 0x%X\n", header->fieldMarshaledSizesCount, header->fieldMarshaledSizesOffset);
+    printf("parameters count %d offset 0x%X\n", header->parametersCount, header->parametersOffset);
+    printf("fields count %d offset 0x%X\n", header->fieldsCount, header->fieldsOffset);
+    printf("genericParameters count %d offset 0x%X\n", header->genericParametersCount, header->genericParameterConstraintsOffset);
+    printf("genericParameterConstraints count %d offset 0x%X\n", header->genericParameterConstraintsCount, header->genericParameterConstraintsOffset);
+    printf("genericContainers count %d offset 0x%X\n", header->genericContainersCount, header->genericContainersOffset);
+    printf("nestedTypes count %d offset 0x%X\n", header->nestedTypesCount, header->nestedTypesOffset);
+    printf("interfaces count %d offset 0x%X\n", header->interfacesCount, header->interfacesOffset);
+    printf("vtableMethods count %d offset 0x%X\n", header->vtableMethodsCount, header->vtableMethodsOffset);
+    printf("interfaceOffsets count %d offset 0x%X\n", header->interfaceOffsetsCount, header->interfaceOffsetsOffset);
+    printf("typeDefinitions count %d offset 0x%X\n", header->typeDefinitionsCount, header->typeDefinitionsOffset);
+    printf("images count %d offset 0x%X\n", header->imagesCount, header->imagesOffset);
+    printf("assemblies count %d offset 0x%X\n", header->assembliesCount, header->assembliesOffset);
+    printf("fieldRefs count %d offset 0x%X\n", header->fieldRefsCount, header->fieldRefsOffset);
+    printf("referencedAssemblies count %d offset 0x%X\n", header->referencedAssembliesCount, header->referencedAssembliesOffset);
+    printf("attributesInfo count %d offset 0x%X\n", header->attributesInfoCount, header->attributesInfoOffset);
+    printf("attributeTypes count %d offset 0x%X\n", header->attributeTypesCount, header->attributeTypesOffset);
+    printf("unresolvedVirtualCallParameterTypes count %d offset 0x%X\n", header->unresolvedVirtualCallParameterTypesCount, header->unresolvedVirtualCallParameterTypesOffset);
+    printf("unresolvedVirtualCallParameterRanges count %d offset 0x%X\n", header->unresolvedVirtualCallParameterRangesCount, header->unresolvedVirtualCallParameterRangesOffset);
+    printf("windowsRuntimeTypeNames size %d offset 0x%X\n", header->windowsRuntimeTypeNamesSize, header->windowsRuntimeTypeNamesOffset);
+    printf("exportedTypeDefinitions count %d offset 0x%X\n", header->exportedTypeDefinitionsCount, header->exportedTypeDefinitionsOffset);
+}
+
+int wmain(int argc, wchar_t* argv[])
 {
     if (argc < 2)
     {
@@ -294,10 +369,13 @@ int main(int argc, char* argv[])
 
     auto path = argv[1];
     FILE* fp;
-    fopen_s(&fp, path, "rb");
+    _wfopen_s(&fp, path, L"rb");
+    
+    printf("%ls\n", path);
 
     if (fp == nullptr)
     {
+        printf("cannot open\n");
         return 0;
     }
 
@@ -329,7 +407,6 @@ int main(int argc, char* argv[])
     fread(metadata, size, 1, fp);
     fclose(fp);
 
-    printf("%s\n", path);
     printf("size %d\n", (int)size);
 
     Il2CppGlobalMetadataHeader_v24* header = reinterpret_cast<Il2CppGlobalMetadataHeader_v24*>(metadata);
@@ -348,42 +425,7 @@ int main(int argc, char* argv[])
 
     int totalSize = getTotalSize(header);
 
-    printf("sanity %X\n", header->sanity);
-    printf("version %d\n", header->version);
-    printf("stringLiteral count %d offset 0x%X\n", header->stringLiteralCount, header->stringLiteralOffset);
-    printf("stringLiteralData count %d offset 0x%X\n", header->stringLiteralDataCount, header->stringLiteralDataOffset);
-    printf("string count %d offset 0x%X\n", header->stringCount, header->stringOffset);
-    printf("events count %d offset 0x%X\n", header->eventsCount, header->eventsOffset);
-    printf("properties count %d offset 0x%X\n", header->propertiesCount, header->propertiesOffset);
-    printf("methods count %d offset 0x%X\n", header->methodsCount, header->methodsOffset);
-    printf("parameterDefaultValues count %d offset 0x%X\n", header->parameterDefaultValuesCount, header->parameterDefaultValuesOffset);
-    printf("fieldDefaultValues count %d offset 0x%X\n", header->fieldDefaultValuesCount, header->fieldDefaultValuesOffset);
-    printf("fieldAndParameterDefaultValueData count %d offset 0x%X\n", header->fieldAndParameterDefaultValueDataCount, header->fieldAndParameterDefaultValueDataOffset);
-    printf("fieldMarshaledSizes count %d offset 0x%X\n", header->fieldMarshaledSizesCount, header->fieldMarshaledSizesOffset);
-    printf("parameters count %d offset 0x%X\n", header->parametersCount, header->parametersOffset);
-    printf("fields count %d offset 0x%X\n", header->fieldsCount, header->fieldsOffset);
-    printf("genericParameters count %d offset 0x%X\n", header->genericParametersCount, header->genericParameterConstraintsOffset);
-    printf("genericParameterConstraints count %d offset 0x%X\n", header->genericParameterConstraintsCount, header->genericParameterConstraintsOffset);
-    printf("genericContainers count %d offset 0x%X\n", header->genericContainersCount, header->genericContainersOffset);
-    printf("nestedTypes count %d offset 0x%X\n", header->nestedTypesCount, header->nestedTypesOffset);
-    printf("interfaces count %d offset 0x%X\n", header->interfacesCount, header->interfacesOffset);
-    printf("vtableMethods count %d offset 0x%X\n", header->vtableMethodsCount, header->vtableMethodsOffset);
-    printf("interfaceOffsets count %d offset 0x%X\n", header->interfaceOffsetsCount, header->interfaceOffsetsOffset);
-    printf("typeDefinitions count %d offset 0x%X\n", header->typeDefinitionsCount, header->typeDefinitionsOffset);
-    printf("rgctxEntries count %d offset 0x%X\n", header->rgctxEntriesCount, header->rgctxEntriesOffset);
-    printf("images count %d offset 0x%X\n", header->imagesCount, header->imagesOffset);
-    printf("assemblies count %d offset 0x%X\n", header->assembliesCount, header->assembliesOffset);
-    printf("metadataUsageLists count %d offset 0x%X\n", header->metadataUsageListsCount, header->metadataUsageListsOffset);
-    printf("metadataUsagePairs count %d offset 0x%X\n", header->metadataUsagePairsCount, header->metadataUsagePairsOffset);
-    printf("fieldRefs count %d offset 0x%X\n", header->fieldRefsCount, header->fieldRefsOffset);
-    printf("referencedAssemblies count %d offset 0x%X\n", header->referencedAssembliesCount, header->referencedAssembliesOffset);
-    printf("attributesInfo count %d offset 0x%X\n", header->attributesInfoCount, header->attributesInfoOffset);
-    printf("attributeTypes count %d offset 0x%X\n", header->attributeTypesCount, header->attributeTypesOffset);
-    printf("unresolvedVirtualCallParameterTypes count %d offset 0x%X\n", header->unresolvedVirtualCallParameterTypesCount, header->unresolvedVirtualCallParameterTypesOffset);
-    printf("unresolvedVirtualCallParameterRanges count %d offset 0x%X\n", header->unresolvedVirtualCallParameterRangesCount, header->unresolvedVirtualCallParameterRangesOffset);
-    printf("windowsRuntimeTypeNames size %d offset 0x%X\n", header->windowsRuntimeTypeNamesSize, header->windowsRuntimeTypeNamesOffset);
-    printf("exportedTypeDefinitions count %d offset 0x%X\n", header->exportedTypeDefinitionsCount, header->exportedTypeDefinitionsOffset);
-
+    printHeader(header);
     int stringLiteralTableCount = header->stringLiteralCount / sizeof(Il2CppStringLiteral);
 
     printf("-------------------------------------------\n");
