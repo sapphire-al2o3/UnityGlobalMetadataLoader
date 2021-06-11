@@ -54,6 +54,14 @@ typedef struct Il2CppMethodDefinition
 } Il2CppMethodDefinition;
 
 #pragma pack(push, p1, 4)
+struct Header
+{
+    int32_t sanity;
+    int32_t version;
+};
+#pragma pack(pop, p1)
+
+#pragma pack(push, p1, 4)
 typedef struct Il2CppGlobalMetadataHeader_v24
 {
     int32_t sanity;
@@ -409,19 +417,22 @@ int wmain(int argc, wchar_t* argv[])
 
     printf("size %d\n", (int)size);
 
+    Header* check = reinterpret_cast<Header*>(metadata);
+
+    if (check->sanity != 0xFAB11BAF)
+    {
+        printf("sanity %X\n", check->sanity);
+        return 0;
+    }
+
+    if (check->version != 24)
+    {
+        printf("version %d\n", check->version);
+        return 0;
+    }
+
     Il2CppGlobalMetadataHeader_v24* header = reinterpret_cast<Il2CppGlobalMetadataHeader_v24*>(metadata);
 
-    if (header->sanity != 0xFAB11BAF)
-    {
-        printf("sanity %X\n", header->sanity);
-        return 0;
-    }
-
-    if (header->version != 24)
-    {
-        printf("version %d\n", header->version);
-        return 0;
-    }
 
     int totalSize = getTotalSize(header);
 
