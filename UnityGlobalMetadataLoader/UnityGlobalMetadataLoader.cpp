@@ -288,7 +288,7 @@ int length(const unsigned char* s)
     return i;
 }
 
-int getTotalSize(Il2CppGlobalMetadataHeader_v24* header)
+int getTotalSize(const Il2CppGlobalMetadataHeader_v24* header)
 {
     int totalSize = 0;
     totalSize += header->stringLiteralCount;
@@ -327,7 +327,7 @@ int getTotalSize(Il2CppGlobalMetadataHeader_v24* header)
     return totalSize;
 }
 
-void printHeader(Il2CppGlobalMetadataHeader_v24* header)
+void printHeader(const Il2CppGlobalMetadataHeader_v24* header)
 {
     printf("sanity %X\n", header->sanity);
     printf("version %d\n", header->version);
@@ -366,7 +366,83 @@ void printHeader(Il2CppGlobalMetadataHeader_v24* header)
     printf("exportedTypeDefinitions count %d offset 0x%X\n", header->exportedTypeDefinitionsCount, header->exportedTypeDefinitionsOffset);
 }
 
-int getTotalSize(Il2CppGlobalMetadataHeader_v27* header)
+int getTotalSize(const Il2CppGlobalMetadataHeader_v24_2019_4* header)
+{
+    int totalSize = 0;
+    totalSize += header->stringLiteralCount;
+    totalSize += header->stringLiteralDataCount;
+    totalSize += header->stringCount;
+    totalSize += header->eventsCount;
+    totalSize += header->propertiesCount;
+    totalSize += header->methodsCount;
+    totalSize += header->parameterDefaultValuesCount;
+    totalSize += header->fieldDefaultValuesCount;
+    totalSize += header->fieldAndParameterDefaultValueDataCount;
+    totalSize += header->fieldMarshaledSizesCount;
+    totalSize += header->parametersCount;
+    totalSize += header->fieldsCount;
+    totalSize += header->genericParametersCount;
+    totalSize += header->genericParameterConstraintsCount;
+    totalSize += header->genericContainersCount;
+    totalSize += header->nestedTypesCount;
+    totalSize += header->interfacesCount;
+    totalSize += header->vtableMethodsCount;
+    totalSize += header->interfaceOffsetsCount;
+    totalSize += header->typeDefinitionsCount;
+    totalSize += header->imagesCount;
+    totalSize += header->assembliesCount;
+    totalSize += header->metadataUsageListsCount;
+    totalSize += header->metadataUsagePairsCount;
+    totalSize += header->fieldRefsCount;
+    totalSize += header->referencedAssembliesCount;
+    totalSize += header->attributesInfoCount;
+    totalSize += header->attributeTypesCount;
+    totalSize += header->unresolvedVirtualCallParameterTypesCount;
+    totalSize += header->unresolvedVirtualCallParameterRangesCount;
+    totalSize += header->windowsRuntimeTypeNamesSize;
+    totalSize += header->exportedTypeDefinitionsCount;
+    return totalSize;
+}
+
+void printHeader(const Il2CppGlobalMetadataHeader_v24_2019_4* header)
+{
+    printf("sanity %X\n", header->sanity);
+    printf("version %d\n", header->version);
+    printf("stringLiteral count %d offset 0x%X\n", header->stringLiteralCount, header->stringLiteralOffset);
+    printf("stringLiteralData count %d offset 0x%X\n", header->stringLiteralDataCount, header->stringLiteralDataOffset);
+    printf("string count %d offset 0x%X\n", header->stringCount, header->stringOffset);
+    printf("events count %d offset 0x%X\n", header->eventsCount, header->eventsOffset);
+    printf("properties count %d offset 0x%X\n", header->propertiesCount, header->propertiesOffset);
+    printf("methods count %d offset 0x%X\n", header->methodsCount, header->methodsOffset);
+    printf("parameterDefaultValues count %d offset 0x%X\n", header->parameterDefaultValuesCount, header->parameterDefaultValuesOffset);
+    printf("fieldDefaultValues count %d offset 0x%X\n", header->fieldDefaultValuesCount, header->fieldDefaultValuesOffset);
+    printf("fieldAndParameterDefaultValueData count %d offset 0x%X\n", header->fieldAndParameterDefaultValueDataCount, header->fieldAndParameterDefaultValueDataOffset);
+    printf("fieldMarshaledSizes count %d offset 0x%X\n", header->fieldMarshaledSizesCount, header->fieldMarshaledSizesOffset);
+    printf("parameters count %d offset 0x%X\n", header->parametersCount, header->parametersOffset);
+    printf("fields count %d offset 0x%X\n", header->fieldsCount, header->fieldsOffset);
+    printf("genericParameters count %d offset 0x%X\n", header->genericParametersCount, header->genericParameterConstraintsOffset);
+    printf("genericParameterConstraints count %d offset 0x%X\n", header->genericParameterConstraintsCount, header->genericParameterConstraintsOffset);
+    printf("genericContainers count %d offset 0x%X\n", header->genericContainersCount, header->genericContainersOffset);
+    printf("nestedTypes count %d offset 0x%X\n", header->nestedTypesCount, header->nestedTypesOffset);
+    printf("interfaces count %d offset 0x%X\n", header->interfacesCount, header->interfacesOffset);
+    printf("vtableMethods count %d offset 0x%X\n", header->vtableMethodsCount, header->vtableMethodsOffset);
+    printf("interfaceOffsets count %d offset 0x%X\n", header->interfaceOffsetsCount, header->interfaceOffsetsOffset);
+    printf("typeDefinitions count %d offset 0x%X\n", header->typeDefinitionsCount, header->typeDefinitionsOffset);
+    printf("images count %d offset 0x%X\n", header->imagesCount, header->imagesOffset);
+    printf("assemblies count %d offset 0x%X\n", header->assembliesCount, header->assembliesOffset);
+    printf("metadataUsageLists count %d offset 0x%X\n", header->metadataUsageListsCount, header->metadataUsageListsOffset);
+    printf("metadataUsagePairs count %d offset 0x%X\n", header->metadataUsagePairsCount, header->metadataUsagePairsOffset);
+    printf("fieldRefs count %d offset 0x%X\n", header->fieldRefsCount, header->fieldRefsOffset);
+    printf("referencedAssemblies count %d offset 0x%X\n", header->referencedAssembliesCount, header->referencedAssembliesOffset);
+    printf("attributesInfo count %d offset 0x%X\n", header->attributesInfoCount, header->attributesInfoOffset);
+    printf("attributeTypes count %d offset 0x%X\n", header->attributeTypesCount, header->attributeTypesOffset);
+    printf("unresolvedVirtualCallParameterTypes count %d offset 0x%X\n", header->unresolvedVirtualCallParameterTypesCount, header->unresolvedVirtualCallParameterTypesOffset);
+    printf("unresolvedVirtualCallParameterRanges count %d offset 0x%X\n", header->unresolvedVirtualCallParameterRangesCount, header->unresolvedVirtualCallParameterRangesOffset);
+    printf("windowsRuntimeTypeNames size %d offset 0x%X\n", header->windowsRuntimeTypeNamesSize, header->windowsRuntimeTypeNamesOffset);
+    printf("exportedTypeDefinitions count %d offset 0x%X\n", header->exportedTypeDefinitionsCount, header->exportedTypeDefinitionsOffset);
+}
+
+int getTotalSize(const Il2CppGlobalMetadataHeader_v27* header)
 {
     int totalSize = 0;
     totalSize += header->stringLiteralCount;
@@ -403,7 +479,7 @@ int getTotalSize(Il2CppGlobalMetadataHeader_v27* header)
     return totalSize;
 }
 
-void printHeader(Il2CppGlobalMetadataHeader_v27* header)
+void printHeader(const Il2CppGlobalMetadataHeader_v27* header)
 {
     printf("sanity %X\n", header->sanity);
     printf("version %d\n", header->version);
@@ -439,6 +515,38 @@ void printHeader(Il2CppGlobalMetadataHeader_v27* header)
     printf("exportedTypeDefinitions count %d offset 0x%X\n", header->exportedTypeDefinitionsCount, header->exportedTypeDefinitionsOffset);
 }
 
+template <typename T>
+void printStringLiteral(const unsigned char* metadata, const T* header)
+{
+    int stringLiteralTableCount = header->stringLiteralCount / sizeof(Il2CppStringLiteral);
+    printf("stringLiteral size %d\n", stringLiteralTableCount);
+
+    Il2CppStringLiteral* stringLiteralTable = reinterpret_cast<Il2CppStringLiteral*>(metadata + header->stringLiteralOffset);
+
+    // print stringLiteral
+    for (int i = 0; i < stringLiteralTableCount; i++)
+    {
+        char* stringLiteral = new char[stringLiteralTable[i].length + 1];
+        stringLiteral[stringLiteralTable[i].length] = '\0';
+        unsigned char* stringLiteralData = metadata + header->stringLiteralDataOffset + stringLiteralTable[i].dataIndex;
+        memcpy(stringLiteral, stringLiteralData, stringLiteralTable[i].length);
+        printf("%s [0x%X]\n", stringLiteral, stringLiteralTable[i].dataIndex);
+        delete[] stringLiteral;
+    }
+}
+
+template <typename T>
+void printString(const unsigned char* metadata, const T* header)
+{
+    for (int i = 0; i < header->stringCount; i++)
+    {
+        const unsigned char* string = metadata + header->stringOffset + i;
+        int l = length(string);
+        printf("%s\n", string);
+        i += l;
+    }
+}
+
 int wmain(int argc, wchar_t* argv[])
 {
     if (argc < 2)
@@ -459,8 +567,8 @@ int wmain(int argc, wchar_t* argv[])
         return 0;
     }
 
-    bool printStringLiteral = false;
-    bool printString = false;
+    bool printStringLiteralOption = false;
+    bool printStringOption = false;
 
     for (int i = 2; i < argc; i++)
     {
@@ -469,10 +577,10 @@ int wmain(int argc, wchar_t* argv[])
             switch (argv[i][1])
             {
             case 'l':
-                printStringLiteral = true;
+                printStringLiteralOption = true;
                 break;
             case 's':
-                printString = true;
+                printStringOption = true;
                 break;
             }
         }
@@ -497,57 +605,52 @@ int wmain(int argc, wchar_t* argv[])
         return 0;
     }
 
-    if (check->version != 24)
+    if (check->version == 27)
+    {
+        Il2CppGlobalMetadataHeader_v27* header_v27 = reinterpret_cast<Il2CppGlobalMetadataHeader_v27*>(metadata);
+
+        printHeader(header_v27);
+        int totalSize = getTotalSize(header_v27);
+
+        printf("-------------------------------------------\n");
+        printf("total size %d\n", totalSize);
+        printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24_2019_4));
+        
+        if (printStringLiteralOption)
+        {
+            printString(metadata, header_v27);
+        }
+
+        if (printStringOption)
+        {
+            printString(metadata, header_v27);
+        }
+    }
+    else if (check->version == 24)
+    {
+        Il2CppGlobalMetadataHeader_v24_2019_4* header_v24 = reinterpret_cast<Il2CppGlobalMetadataHeader_v24_2019_4*>(metadata);
+
+        int totalSize = getTotalSize(header_v24);
+        printHeader(header_v24);
+
+        printf("-------------------------------------------\n");
+        printf("total size %d\n", totalSize);
+        printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24_2019_4));
+
+        if (printStringLiteralOption)
+        {
+            printString(metadata, header_v24);
+        }
+
+        if (printStringOption)
+        {
+            printString(metadata, header_v24);
+        }
+    }
+    else
     {
         printf("version %d\n", check->version);
         return 0;
-    }
-
-    Il2CppGlobalMetadataHeader_v24* header = reinterpret_cast<Il2CppGlobalMetadataHeader_v24*>(metadata);
-
-
-    int totalSize = getTotalSize(header);
-
-    printHeader(header);
-    int stringLiteralTableCount = header->stringLiteralCount / sizeof(Il2CppStringLiteral);
-
-    printf("-------------------------------------------\n");
-    printf("total size %d\n", totalSize);
-    printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24));
-
-    if (printStringLiteral)
-    {
-        printf("stringLiteral size %d\n", stringLiteralTableCount);
-
-        Il2CppStringLiteral* stringLiteralTable = reinterpret_cast<Il2CppStringLiteral*>(metadata + header->stringLiteralOffset);
-
-        // print stringLiteral
-        for (int i = 0; i < stringLiteralTableCount; i++)
-        {
-            char* stringLiteral = new char[stringLiteralTable[i].length + 1];
-            stringLiteral[stringLiteralTable[i].length] = '\0';
-            unsigned char* stringLiteralData = metadata + header->stringLiteralDataOffset + stringLiteralTable[i].dataIndex;
-            memcpy(stringLiteral, stringLiteralData, stringLiteralTable[i].length);
-            printf("%s [0x%X]\n", stringLiteral, stringLiteralTable[i].dataIndex);
-            delete[] stringLiteral;
-        }
-    }
-
-    int methodInfoDefinitionTableCount = header->methodsCount / sizeof(Il2CppMethodDefinition);
-
-    for (int i = 0; i < methodInfoDefinitionTableCount; i++)
-    {
-    }
-
-    if (printString)
-    {
-        for (int i = 0; i < header->stringCount; i++)
-        {
-            const unsigned char* string = metadata + header->stringOffset + i;
-            int l = length(string);
-            printf("%s\n", string);
-            i += l;
-        }
     }
 
     delete[] metadata;
