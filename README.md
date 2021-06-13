@@ -2,6 +2,14 @@
 
 Unityのglobal-metadata.datに含まれるヘッダを表示する
 
+## Unity Version
+
+Unity2020.3
+Unity2019.4
+Unity2018.4
+
+## Example
+
 ```
 size 1323264
 sanity FAB11BAF
