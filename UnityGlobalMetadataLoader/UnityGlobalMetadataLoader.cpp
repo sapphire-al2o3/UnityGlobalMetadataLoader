@@ -62,7 +62,7 @@ struct Header
 #pragma pack(pop, p1)
 
 #pragma pack(push, p1, 4)
-typedef struct Il2CppGlobalMetadataHeader_v24
+typedef struct Il2CppGlobalMetadataHeader_v24_2018_4
 {
     int32_t sanity;
     int32_t version;
@@ -132,7 +132,7 @@ typedef struct Il2CppGlobalMetadataHeader_v24
     int32_t windowsRuntimeTypeNamesSize;
     int32_t exportedTypeDefinitionsOffset; // TypeDefinitionIndex
     int32_t exportedTypeDefinitionsCount;
-} Il2CppGlobalMetadataHeader_v24;
+} Il2CppGlobalMetadataHeader_v24_2018_4;
 #pragma pack(pop, p1)
 
 #pragma pack(push, p1,4)
@@ -288,7 +288,7 @@ int length(const unsigned char* s)
     return i;
 }
 
-int getTotalSize(const Il2CppGlobalMetadataHeader_v24* header)
+int getTotalSize(const Il2CppGlobalMetadataHeader_v24_2018_4* header)
 {
     int totalSize = 0;
     totalSize += header->stringLiteralCount;
@@ -327,7 +327,7 @@ int getTotalSize(const Il2CppGlobalMetadataHeader_v24* header)
     return totalSize;
 }
 
-void printHeader(const Il2CppGlobalMetadataHeader_v24* header)
+void printHeader(const Il2CppGlobalMetadataHeader_v24_2018_4* header)
 {
     printf("sanity %X\n", header->sanity);
     printf("version %d\n", header->version);
@@ -558,11 +558,10 @@ int wmain(int argc, wchar_t* argv[])
     auto path = argv[1];
     FILE* fp;
     _wfopen_s(&fp, path, L"rb");
-    
-    printf("%ls\n", path);
 
     if (fp == nullptr)
     {
+        printf("%ls\n", path);
         printf("cannot open\n");
         return 0;
     }
@@ -610,11 +609,12 @@ int wmain(int argc, wchar_t* argv[])
         Il2CppGlobalMetadataHeader_v27* header_v27 = reinterpret_cast<Il2CppGlobalMetadataHeader_v27*>(metadata);
 
         printHeader(header_v27);
-        int totalSize = getTotalSize(header_v27);
+        int dataSize = getTotalSize(header_v27);
 
         printf("-------------------------------------------\n");
-        printf("total size %d\n", totalSize);
-        printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24_2019_4));
+        printf("data size %d\n", dataSize);
+        printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v27));
+        printf("total size %d\n", dataSize + sizeof(Il2CppGlobalMetadataHeader_v27));
         
         if (printStringLiteralOption)
         {
@@ -628,23 +628,49 @@ int wmain(int argc, wchar_t* argv[])
     }
     else if (check->version == 24)
     {
-        Il2CppGlobalMetadataHeader_v24_2019_4* header_v24 = reinterpret_cast<Il2CppGlobalMetadataHeader_v24_2019_4*>(metadata);
+        Il2CppGlobalMetadataHeader_v24_2019_4* header = reinterpret_cast<Il2CppGlobalMetadataHeader_v24_2019_4*>(metadata);
 
-        int totalSize = getTotalSize(header_v24);
-        printHeader(header_v24);
+        int dataSize = getTotalSize(header);
 
-        printf("-------------------------------------------\n");
-        printf("total size %d\n", totalSize);
-        printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24_2019_4));
-
-        if (printStringLiteralOption)
+        if (dataSize == (int)size + sizeof(Il2CppGlobalMetadataHeader_v24_2019_4))
         {
-            printString(metadata, header_v24);
+            printHeader(header);
+
+            printf("-------------------------------------------\n");
+            printf("data size %d\n", dataSize);
+            printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24_2019_4));
+            printf("total size %d\n", dataSize + sizeof(Il2CppGlobalMetadataHeader_v24_2019_4));
+
+            if (printStringLiteralOption)
+            {
+                printString(metadata, header);
+            }
+
+            if (printStringOption)
+            {
+                printString(metadata, header);
+            }
         }
-
-        if (printStringOption)
+        else
         {
-            printString(metadata, header_v24);
+            Il2CppGlobalMetadataHeader_v24_2018_4* header_2018_4 = reinterpret_cast<Il2CppGlobalMetadataHeader_v24_2018_4*>(metadata);
+            dataSize = getTotalSize(header_2018_4);
+            printHeader(header_2018_4);
+
+            printf("-------------------------------------------\n");
+            printf("data size %d\n", dataSize);
+            printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24_2018_4));
+            printf("total size %d\n", dataSize + sizeof(Il2CppGlobalMetadataHeader_v24_2018_4));
+
+            if (printStringLiteralOption)
+            {
+                printString(metadata, header_2018_4);
+            }
+
+            if (printStringOption)
+            {
+                printString(metadata, header_2018_4);
+            }
         }
     }
     else
