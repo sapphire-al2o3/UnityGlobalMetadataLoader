@@ -600,7 +600,7 @@ int wmain(int argc, wchar_t* argv[])
 
     if (check->sanity != 0xFAB11BAF)
     {
-        printf("sanity %X\n", check->sanity);
+        printf("sanity 0x%X\n", check->sanity);
         return 0;
     }
 
