@@ -6,8 +6,8 @@ Unityのglobal-metadata.datに含まれるヘッダを表示する
 size 1323264
 sanity FAB11BAF
 version 27
-stringLiteral count 23600 offset 0x100 1.78
-stringLiteralData count 71992 offset 0x5D30 5.44%
+stringLiteral count 23600 offset 0x100
+stringLiteralData count 71992 offset 0x5D30
 string count 210140 offset 0x17668
 events count 96 offset 0x4AB44
 properties count 29800 offset 0x4ABA4
