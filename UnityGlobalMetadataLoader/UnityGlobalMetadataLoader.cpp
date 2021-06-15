@@ -612,9 +612,9 @@ int wmain(int argc, wchar_t* argv[])
         printHeader(header_v27, dataSize);
 
         printf("-------------------------------------------\n");
-        printf("data size %d\n", dataSize);
-        printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v27));
-        printf("total size %d\n", dataSize + sizeof(Il2CppGlobalMetadataHeader_v27));
+        printf("data size %d byte\n", dataSize);
+        printf("header size %d byte\n", sizeof(Il2CppGlobalMetadataHeader_v27));
+        printf("total size %d byte\n", dataSize + sizeof(Il2CppGlobalMetadataHeader_v27));
         
         if (printStringLiteralOption)
         {
@@ -636,9 +636,9 @@ int wmain(int argc, wchar_t* argv[])
             printHeader(header, dataSize);
 
             printf("-------------------------------------------\n");
-            printf("data size %d\n", dataSize);
-            printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24_2019_4));
-            printf("total size %d\n", dataSize + sizeof(Il2CppGlobalMetadataHeader_v24_2019_4));
+            printf("data size %d byte\n", dataSize);
+            printf("header size %d byte\n", sizeof(Il2CppGlobalMetadataHeader_v24_2019_4));
+            printf("total size %d byte\n", dataSize + sizeof(Il2CppGlobalMetadataHeader_v24_2019_4));
 
             if (printStringLiteralOption)
             {
@@ -657,9 +657,9 @@ int wmain(int argc, wchar_t* argv[])
             printHeader(header_2018_4, dataSize);
 
             printf("-------------------------------------------\n");
-            printf("data size %d\n", dataSize);
-            printf("header size %d\n", sizeof(Il2CppGlobalMetadataHeader_v24_2018_4));
-            printf("total size %d\n", dataSize + sizeof(Il2CppGlobalMetadataHeader_v24_2018_4));
+            printf("data size %d byte\n", dataSize);
+            printf("header size %d byte\n", sizeof(Il2CppGlobalMetadataHeader_v24_2018_4));
+            printf("total size %d byte\n", dataSize + sizeof(Il2CppGlobalMetadataHeader_v24_2018_4));
 
             if (printStringLiteralOption)
             {
