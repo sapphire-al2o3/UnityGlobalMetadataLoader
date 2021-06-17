@@ -34,7 +34,7 @@ typedef struct Il2CppStringLiteral
     StringLiteralIndex dataIndex;
 } Il2CppStringLiteral;
 
-typedef struct Il2CppMethodDefinition
+typedef struct Il2CppMethodDefinition_v24_2018_4
 {
     StringIndex nameIndex;
     TypeDefinitionIndex declaringType;
@@ -51,7 +51,35 @@ typedef struct Il2CppMethodDefinition
     uint16_t iflags;
     uint16_t slot;
     uint16_t parameterCount;
-} Il2CppMethodDefinition;
+} Il2CppMethodDefinition_2018_4;
+
+typedef struct Il2CppMethodDefinition_v24_2019_4
+{
+    StringIndex nameIndex;
+    TypeDefinitionIndex declaringType;
+    TypeIndex returnType;
+    ParameterIndex parameterStart;
+    GenericContainerIndex genericContainerIndex;
+    uint32_t token;
+    uint16_t flags;
+    uint16_t iflags;
+    uint16_t slot;
+    uint16_t parameterCount;
+} Il2CppMethodDefinition_2019_4;
+
+typedef struct Il2CppMethodDefinition_v27
+{
+    StringIndex nameIndex;
+    TypeDefinitionIndex declaringType;
+    TypeIndex returnType;
+    ParameterIndex parameterStart;
+    GenericContainerIndex genericContainerIndex;
+    uint32_t token;
+    uint16_t flags;
+    uint16_t iflags;
+    uint16_t slot;
+    uint16_t parameterCount;
+} Il2CppMethodDefinition_v27;
 
 #pragma pack(push, p1, 4)
 struct Header
