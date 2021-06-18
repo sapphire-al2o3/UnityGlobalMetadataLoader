@@ -357,7 +357,7 @@ int getTotalSize(const Il2CppGlobalMetadataHeader_v24_2018_4* header)
 
 void printHeader(const Il2CppGlobalMetadataHeader_v24_2018_4* header, int dataSize)
 {
-    printf("sanity %X\n", header->sanity);
+    printf("sanity 0x%X\n", header->sanity);
     printf("version %d\n", header->version);
     printf("stringLiteral count %d offset 0x%X %.2f%%\n", header->stringLiteralCount, header->stringLiteralOffset, header->stringLiteralCount * 100.0f / dataSize);
     printf("stringLiteralData count %d offset 0x%X %.2f%%\n", header->stringLiteralDataCount, header->stringLiteralDataOffset, header->stringLiteralDataCount * 100.0f / dataSize);
@@ -434,7 +434,7 @@ int getTotalSize(const Il2CppGlobalMetadataHeader_v24_2019_4* header)
 
 void printHeader(const Il2CppGlobalMetadataHeader_v24_2019_4* header, int dataSize)
 {
-    printf("sanity %X\n", header->sanity);
+    printf("sanity 0x%X\n", header->sanity);
     printf("version %d\n", header->version);
     printf("stringLiteral count %d offset 0x%X %.2f%%\n", header->stringLiteralCount, header->stringLiteralOffset, header->stringLiteralCount * 100.0f / dataSize);
     printf("stringLiteralData count %d offset 0x%X %.2f%%\n", header->stringLiteralDataCount, header->stringLiteralDataOffset, header->stringLiteralDataCount * 100.0f / dataSize);
@@ -509,7 +509,7 @@ int getTotalSize(const Il2CppGlobalMetadataHeader_v27* header)
 
 void printHeader(const Il2CppGlobalMetadataHeader_v27* header, int dataSize)
 {
-    printf("sanity %X\n", header->sanity);
+    printf("sanity 0x%X\n", header->sanity);
     printf("version %d\n", header->version);
     printf("stringLiteral count %d offset 0x%X %.2f%%\n", header->stringLiteralCount, header->stringLiteralOffset, header->stringLiteralCount * 100.0f / dataSize);
     printf("stringLiteralData count %d offset 0x%X %.2f%%\n", header->stringLiteralDataCount, header->stringLiteralDataOffset, header->stringLiteralDataCount * 100.0f / dataSize);
