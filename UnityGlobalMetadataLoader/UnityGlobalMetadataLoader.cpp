@@ -575,6 +575,20 @@ void printString(const unsigned char* metadata, const T* header)
     }
 }
 
+void printMethod(const unsigned char* metadata, const Il2CppGlobalMetadataHeader_v24_2018_4* header)
+{
+    int count = header->methodsCount / sizeof(Il2CppMethodDefinition_v24_2018_4);
+    const Il2CppMethodDefinition_v24_2018_4* methodTable = reinterpret_cast<const Il2CppMethodDefinition_v24_2018_4*>(metadata + header->methodsOffset);
+
+    for (int i = 0; i < count; i++)
+    {
+        const unsigned char* name = metadata + header->stringOffset + methodTable[i].nameIndex;
+        int l = length(name);
+        printf("%s\n", name);
+    }
+    printf("method count %d\n", count);
+}
+
 int wmain(int argc, wchar_t* argv[])
 {
     if (argc < 2)
@@ -596,6 +610,7 @@ int wmain(int argc, wchar_t* argv[])
 
     bool printStringLiteralOption = false;
     bool printStringOption = false;
+    bool printMethodOption = false;
 
     for (int i = 2; i < argc; i++)
     {
@@ -608,6 +623,9 @@ int wmain(int argc, wchar_t* argv[])
                 break;
             case 's':
                 printStringOption = true;
+                break;
+            case 'm':
+                printMethodOption = true;
                 break;
             }
         }
@@ -697,6 +715,11 @@ int wmain(int argc, wchar_t* argv[])
             if (printStringOption)
             {
                 printString(metadata, header_2018_4);
+            }
+
+            if (printMethodOption)
+            {
+                printMethod(metadata, header_2018_4);
             }
         }
     }
