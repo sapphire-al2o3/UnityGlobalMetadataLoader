@@ -305,7 +305,6 @@ typedef struct Il2CppGlobalMetadataHeader_v27
 } Il2CppGlobalMetadataHeader_v27;
 #pragma pack(pop, p1)
 
-
 int length(const unsigned char* s)
 {
     int i = 0;
@@ -575,10 +574,38 @@ void printString(const unsigned char* metadata, const T* header)
     }
 }
 
+void printMethod(const unsigned char* metadata, const Il2CppGlobalMetadataHeader_v27* header)
+{
+    int count = header->methodsCount / sizeof(Il2CppMethodDefinition_v27);
+    auto methodTable = reinterpret_cast<const Il2CppMethodDefinition_v27*>(metadata + header->methodsOffset);
+
+    for (int i = 0; i < count; i++)
+    {
+        const unsigned char* name = metadata + header->stringOffset + methodTable[i].nameIndex;
+        int l = length(name);
+        printf("%s\n", name);
+    }
+    printf("method count %d\n", count);
+}
+
+void printMethod(const unsigned char* metadata, const Il2CppGlobalMetadataHeader_v24_2019_4* header)
+{
+    int count = header->methodsCount / sizeof(Il2CppMethodDefinition_v24_2019_4);
+    auto methodTable = reinterpret_cast<const Il2CppMethodDefinition_v24_2019_4*>(metadata + header->methodsOffset);
+
+    for (int i = 0; i < count; i++)
+    {
+        const unsigned char* name = metadata + header->stringOffset + methodTable[i].nameIndex;
+        int l = length(name);
+        printf("%s\n", name);
+    }
+    printf("method count %d\n", count);
+}
+
 void printMethod(const unsigned char* metadata, const Il2CppGlobalMetadataHeader_v24_2018_4* header)
 {
     int count = header->methodsCount / sizeof(Il2CppMethodDefinition_v24_2018_4);
-    const Il2CppMethodDefinition_v24_2018_4* methodTable = reinterpret_cast<const Il2CppMethodDefinition_v24_2018_4*>(metadata + header->methodsOffset);
+    auto methodTable = reinterpret_cast<const Il2CppMethodDefinition_v24_2018_4*>(metadata + header->methodsOffset);
 
     for (int i = 0; i < count; i++)
     {
@@ -671,6 +698,11 @@ int wmain(int argc, wchar_t* argv[])
         {
             printString(metadata, header_v27);
         }
+
+        if (printMethodOption)
+        {
+            printMethod(metadata, header_v27);
+        }
     }
     else if (check->version == 24)
     {
@@ -694,6 +726,11 @@ int wmain(int argc, wchar_t* argv[])
             if (printStringOption)
             {
                 printString(metadata, header);
+            }
+
+            if (printMethodOption)
+            {
+                printMethod(metadata, header);
             }
         }
         else
