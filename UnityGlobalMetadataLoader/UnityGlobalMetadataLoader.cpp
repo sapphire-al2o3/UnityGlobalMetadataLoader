@@ -305,6 +305,30 @@ typedef struct Il2CppGlobalMetadataHeader_v27
 } Il2CppGlobalMetadataHeader_v27;
 #pragma pack(pop, p1)
 
+template <typename T>
+struct GetMethodDefinition
+{
+    struct U {};
+};
+
+template <>
+struct GetMethodDefinition<Il2CppGlobalMetadataHeader_v27>
+{
+    using U = Il2CppMethodDefinition_v27;
+};
+
+template <>
+struct GetMethodDefinition<Il2CppGlobalMetadataHeader_v24_2019_4>
+{
+    using U = Il2CppMethodDefinition_v24_2019_4;
+};
+
+template <>
+struct GetMethodDefinition<Il2CppGlobalMetadataHeader_v24_2018_4>
+{
+    using U = Il2CppMethodDefinition_v24_2018_4;
+};
+
 int length(const unsigned char* s)
 {
     int i = 0;
@@ -574,38 +598,12 @@ void printString(const unsigned char* metadata, const T* header)
     }
 }
 
-void printMethod(const unsigned char* metadata, const Il2CppGlobalMetadataHeader_v27* header)
+template <typename T>
+void printMethod(const unsigned char* metadata, const T* header)
 {
-    int count = header->methodsCount / sizeof(Il2CppMethodDefinition_v27);
-    auto methodTable = reinterpret_cast<const Il2CppMethodDefinition_v27*>(metadata + header->methodsOffset);
-
-    for (int i = 0; i < count; i++)
-    {
-        const unsigned char* name = metadata + header->stringOffset + methodTable[i].nameIndex;
-        int l = length(name);
-        printf("%s\n", name);
-    }
-    printf("method count %d\n", count);
-}
-
-void printMethod(const unsigned char* metadata, const Il2CppGlobalMetadataHeader_v24_2019_4* header)
-{
-    int count = header->methodsCount / sizeof(Il2CppMethodDefinition_v24_2019_4);
-    auto methodTable = reinterpret_cast<const Il2CppMethodDefinition_v24_2019_4*>(metadata + header->methodsOffset);
-
-    for (int i = 0; i < count; i++)
-    {
-        const unsigned char* name = metadata + header->stringOffset + methodTable[i].nameIndex;
-        int l = length(name);
-        printf("%s\n", name);
-    }
-    printf("method count %d\n", count);
-}
-
-void printMethod(const unsigned char* metadata, const Il2CppGlobalMetadataHeader_v24_2018_4* header)
-{
-    int count = header->methodsCount / sizeof(Il2CppMethodDefinition_v24_2018_4);
-    auto methodTable = reinterpret_cast<const Il2CppMethodDefinition_v24_2018_4*>(metadata + header->methodsOffset);
+    using U = typename GetMethodDefinition<T>::U;
+    int count = header->methodsCount / sizeof(U);
+    auto methodTable = reinterpret_cast<const U*>(metadata + header->methodsOffset);
 
     for (int i = 0; i < count; i++)
     {
