@@ -51,7 +51,7 @@ typedef struct Il2CppMethodDefinition_v24_2018_4
     uint16_t iflags;
     uint16_t slot;
     uint16_t parameterCount;
-} Il2CppMethodDefinition_2018_4;
+} Il2CppMethodDefinition_v24_2018_4;
 
 typedef struct Il2CppMethodDefinition_v24_2019_4
 {
@@ -65,7 +65,7 @@ typedef struct Il2CppMethodDefinition_v24_2019_4
     uint16_t iflags;
     uint16_t slot;
     uint16_t parameterCount;
-} Il2CppMethodDefinition_2019_4;
+} Il2CppMethodDefinition_v24_2019_4;
 
 typedef struct Il2CppMethodDefinition_v27
 {
