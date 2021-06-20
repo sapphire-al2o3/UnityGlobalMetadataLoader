@@ -81,6 +81,149 @@ typedef struct Il2CppMethodDefinition_v27
     uint16_t parameterCount;
 } Il2CppMethodDefinition_v27;
 
+typedef struct Il2CppTypeDefinition_v24_2018_4
+{
+    StringIndex nameIndex;
+    StringIndex namespaceIndex;
+    TypeIndex byvalTypeIndex;
+    TypeIndex byrefTypeIndex;
+
+    TypeIndex declaringTypeIndex;
+    TypeIndex parentIndex;
+    TypeIndex elementTypeIndex; // we can probably remove this one. Only used for enums
+
+    RGCTXIndex rgctxStartIndex;
+    int32_t rgctxCount;
+
+    GenericContainerIndex genericContainerIndex;
+
+    uint32_t flags;
+
+    FieldIndex fieldStart;
+    MethodIndex methodStart;
+    EventIndex eventStart;
+    PropertyIndex propertyStart;
+    NestedTypeIndex nestedTypesStart;
+    InterfacesIndex interfacesStart;
+    VTableIndex vtableStart;
+    InterfacesIndex interfaceOffsetsStart;
+
+    uint16_t method_count;
+    uint16_t property_count;
+    uint16_t field_count;
+    uint16_t event_count;
+    uint16_t nested_type_count;
+    uint16_t vtable_count;
+    uint16_t interfaces_count;
+    uint16_t interface_offsets_count;
+
+    // bitfield to portably encode boolean values as single bits
+    // 01 - valuetype;
+    // 02 - enumtype;
+    // 03 - has_finalize;
+    // 04 - has_cctor;
+    // 05 - is_blittable;
+    // 06 - is_import_or_windows_runtime;
+    // 07-10 - One of nine possible PackingSize values (0, 1, 2, 4, 8, 16, 32, 64, or 128)
+    uint32_t bitfield;
+    uint32_t token;
+} Il2CppTypeDefinition_v24_2018_4;
+
+typedef struct Il2CppTypeDefinition_v24_2019_4
+{
+    StringIndex nameIndex;
+    StringIndex namespaceIndex;
+    TypeIndex byvalTypeIndex;
+    TypeIndex byrefTypeIndex;
+
+    TypeIndex declaringTypeIndex;
+    TypeIndex parentIndex;
+    TypeIndex elementTypeIndex; // we can probably remove this one. Only used for enums
+
+    GenericContainerIndex genericContainerIndex;
+
+    uint32_t flags;
+
+    FieldIndex fieldStart;
+    MethodIndex methodStart;
+    EventIndex eventStart;
+    PropertyIndex propertyStart;
+    NestedTypeIndex nestedTypesStart;
+    InterfacesIndex interfacesStart;
+    VTableIndex vtableStart;
+    InterfacesIndex interfaceOffsetsStart;
+
+    uint16_t method_count;
+    uint16_t property_count;
+    uint16_t field_count;
+    uint16_t event_count;
+    uint16_t nested_type_count;
+    uint16_t vtable_count;
+    uint16_t interfaces_count;
+    uint16_t interface_offsets_count;
+
+    // bitfield to portably encode boolean values as single bits
+    // 01 - valuetype;
+    // 02 - enumtype;
+    // 03 - has_finalize;
+    // 04 - has_cctor;
+    // 05 - is_blittable;
+    // 06 - is_import_or_windows_runtime;
+    // 07-10 - One of nine possible PackingSize values (0, 1, 2, 4, 8, 16, 32, 64, or 128)
+    // 11 - PackingSize is default
+    // 12 - ClassSize is default
+    // 13-16 - One of nine possible PackingSize values (0, 1, 2, 4, 8, 16, 32, 64, or 128) - the specified packing size (even for explicit layouts)
+    uint32_t bitfield;
+    uint32_t token;
+} Il2CppTypeDefinition_v24_2019_4;
+
+typedef struct Il2CppTypeDefinition_v27
+{
+    StringIndex nameIndex;
+    StringIndex namespaceIndex;
+    TypeIndex byvalTypeIndex;
+
+    TypeIndex declaringTypeIndex;
+    TypeIndex parentIndex;
+    TypeIndex elementTypeIndex; // we can probably remove this one. Only used for enums
+
+    GenericContainerIndex genericContainerIndex;
+
+    uint32_t flags;
+
+    FieldIndex fieldStart;
+    MethodIndex methodStart;
+    EventIndex eventStart;
+    PropertyIndex propertyStart;
+    NestedTypeIndex nestedTypesStart;
+    InterfacesIndex interfacesStart;
+    VTableIndex vtableStart;
+    InterfacesIndex interfaceOffsetsStart;
+
+    uint16_t method_count;
+    uint16_t property_count;
+    uint16_t field_count;
+    uint16_t event_count;
+    uint16_t nested_type_count;
+    uint16_t vtable_count;
+    uint16_t interfaces_count;
+    uint16_t interface_offsets_count;
+
+    // bitfield to portably encode boolean values as single bits
+    // 01 - valuetype;
+    // 02 - enumtype;
+    // 03 - has_finalize;
+    // 04 - has_cctor;
+    // 05 - is_blittable;
+    // 06 - is_import_or_windows_runtime;
+    // 07-10 - One of nine possible PackingSize values (0, 1, 2, 4, 8, 16, 32, 64, or 128)
+    // 11 - PackingSize is default
+    // 12 - ClassSize is default
+    // 13-16 - One of nine possible PackingSize values (0, 1, 2, 4, 8, 16, 32, 64, or 128) - the specified packing size (even for explicit layouts)
+    uint32_t bitfield;
+    uint32_t token;
+} Il2CppTypeDefinition_v27;
+
 #pragma pack(push, p1, 4)
 struct Header
 {
@@ -308,25 +451,27 @@ typedef struct Il2CppGlobalMetadataHeader_v27
 template <typename T>
 struct GetMethodDefinition
 {
-    struct U {};
 };
 
 template <>
 struct GetMethodDefinition<Il2CppGlobalMetadataHeader_v27>
 {
-    using U = Il2CppMethodDefinition_v27;
+    using Method = Il2CppMethodDefinition_v27;
+    using Type = Il2CppTypeDefinition_v27;
 };
 
 template <>
 struct GetMethodDefinition<Il2CppGlobalMetadataHeader_v24_2019_4>
 {
-    using U = Il2CppMethodDefinition_v24_2019_4;
+    using Method = Il2CppMethodDefinition_v24_2019_4;
+    using Type = Il2CppTypeDefinition_v24_2019_4;
 };
 
 template <>
 struct GetMethodDefinition<Il2CppGlobalMetadataHeader_v24_2018_4>
 {
-    using U = Il2CppMethodDefinition_v24_2018_4;
+    using Method = Il2CppMethodDefinition_v24_2018_4;
+    using Type = Il2CppTypeDefinition_v24_2018_4;
 };
 
 int length(const unsigned char* s)
@@ -601,15 +746,18 @@ void printString(const unsigned char* metadata, const T* header)
 template <typename T>
 void printMethod(const unsigned char* metadata, const T* header)
 {
-    using U = typename GetMethodDefinition<T>::U;
+    using U = typename GetMethodDefinition<T>::Method;
+    using V = typename GetMethodDefinition<T>::Type;
     int count = header->methodsCount / sizeof(U);
     auto methodTable = reinterpret_cast<const U*>(metadata + header->methodsOffset);
+    auto typeTable = reinterpret_cast<const V*>(metadata + header->typeDefinitionsOffset);
 
     for (int i = 0; i < count; i++)
     {
         const unsigned char* name = metadata + header->stringOffset + methodTable[i].nameIndex;
-        int l = length(name);
-        printf("%s\n", name);
+        const unsigned char* typeName = metadata + header->stringOffset + typeTable[methodTable[i].declaringType].nameIndex;
+
+        printf("%s::%s\n", typeName, name);
     }
     printf("method count %d\n", count);
 }
@@ -733,9 +881,9 @@ int wmain(int argc, wchar_t* argv[])
         }
         else
         {
-            Il2CppGlobalMetadataHeader_v24_2018_4* header_2018_4 = reinterpret_cast<Il2CppGlobalMetadataHeader_v24_2018_4*>(metadata);
-            dataSize = getTotalSize(header_2018_4);
-            printHeader(header_2018_4, dataSize);
+            Il2CppGlobalMetadataHeader_v24_2018_4* header_v24_2018_4 = reinterpret_cast<Il2CppGlobalMetadataHeader_v24_2018_4*>(metadata);
+            dataSize = getTotalSize(header_v24_2018_4);
+            printHeader(header_v24_2018_4, dataSize);
 
             printf("-------------------------------------------\n");
             printf("data size %d byte\n", dataSize);
@@ -744,17 +892,17 @@ int wmain(int argc, wchar_t* argv[])
 
             if (printStringLiteralOption)
             {
-                printString(metadata, header_2018_4);
+                printString(metadata, header_v24_2018_4);
             }
 
             if (printStringOption)
             {
-                printString(metadata, header_2018_4);
+                printString(metadata, header_v24_2018_4);
             }
 
             if (printMethodOption)
             {
-                printMethod(metadata, header_2018_4);
+                printMethod(metadata, header_v24_2018_4);
             }
         }
     }
