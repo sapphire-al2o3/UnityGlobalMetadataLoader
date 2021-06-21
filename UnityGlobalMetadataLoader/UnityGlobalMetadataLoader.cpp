@@ -762,6 +762,22 @@ void printMethod(const unsigned char* metadata, const T* header)
     printf("method count %d\n", count);
 }
 
+template <typename T>
+void printType(const unsigned char* metadata, const T* header)
+{
+    using V = typename GetMethodDefinition<T>::Type;
+    int count = header->typeDefinitionsCount / sizeof(V);
+    auto typeTable = reinterpret_cast<const V*>(metadata + header->typeDefinitionsOffset);
+
+    for (int i = 0; i < count; i++)
+    {
+        const unsigned char* typeName = metadata + header->stringOffset + typeTable[i].nameIndex;
+
+        printf("%s\n", typeName);
+    }
+    printf("type count %d\n", count);
+}
+
 int wmain(int argc, wchar_t* argv[])
 {
     if (argc < 2)
@@ -784,6 +800,7 @@ int wmain(int argc, wchar_t* argv[])
     bool printStringLiteralOption = false;
     bool printStringOption = false;
     bool printMethodOption = false;
+    bool printTypeOption = false;
 
     for (int i = 2; i < argc; i++)
     {
@@ -799,6 +816,9 @@ int wmain(int argc, wchar_t* argv[])
                 break;
             case 'm':
                 printMethodOption = true;
+                break;
+            case 't':
+                printTypeOption = true;
                 break;
             }
         }
@@ -849,6 +869,11 @@ int wmain(int argc, wchar_t* argv[])
         {
             printMethod(metadata, header_v27);
         }
+
+        if (printTypeOption)
+        {
+            printType(metadata, header_v27);
+        }
     }
     else if (check->version == 24)
     {
@@ -878,6 +903,11 @@ int wmain(int argc, wchar_t* argv[])
             {
                 printMethod(metadata, header);
             }
+
+            if (printTypeOption)
+            {
+                printType(metadata, header);
+            }
         }
         else
         {
@@ -903,6 +933,11 @@ int wmain(int argc, wchar_t* argv[])
             if (printMethodOption)
             {
                 printMethod(metadata, header_v24_2018_4);
+            }
+
+            if (printTypeOption)
+            {
+                printType(metadata, header_v24_2018_4);
             }
         }
     }
