@@ -772,8 +772,15 @@ void printType(const unsigned char* metadata, const T* header)
     for (int i = 0; i < count; i++)
     {
         const unsigned char* typeName = metadata + header->stringOffset + typeTable[i].nameIndex;
-
-        printf("%s\n", typeName);
+        const unsigned char* namespaceName = metadata + header->stringOffset + typeTable[i].namespaceIndex;
+        if (namespaceName[0] == '\0')
+        {
+            printf("%s\n", typeName);
+        }
+        else
+        {
+            printf("%s.%s\n", namespaceName, typeName);
+        }
     }
     printf("type count %d\n", count);
 }
