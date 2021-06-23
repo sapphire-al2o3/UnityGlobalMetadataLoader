@@ -744,6 +744,13 @@ void printString(const unsigned char* metadata, const T* header)
 }
 
 template <typename T>
+bool checkType(const unsigned char* metadata, const T* header)
+{
+    using V = typename GetMethodDefinition<T>::Type;
+    return (header->typeDefinitionsCount % sizeof(V)) == 0;
+}
+
+template <typename T>
 void printMethod(const unsigned char* metadata, const T* header)
 {
     using U = typename GetMethodDefinition<T>::Method;
@@ -751,13 +758,20 @@ void printMethod(const unsigned char* metadata, const T* header)
     int count = header->methodsCount / sizeof(U);
     auto methodTable = reinterpret_cast<const U*>(metadata + header->methodsOffset);
     auto typeTable = reinterpret_cast<const V*>(metadata + header->typeDefinitionsOffset);
+    bool validTypeTable = checkType(metadata, header);
 
     for (int i = 0; i < count; i++)
     {
         const unsigned char* name = metadata + header->stringOffset + methodTable[i].nameIndex;
-        const unsigned char* typeName = metadata + header->stringOffset + typeTable[methodTable[i].declaringType].nameIndex;
-
-        printf("%s::%s\n", typeName, name);
+        if (validTypeTable)
+        {
+            const unsigned char* typeName = metadata + header->stringOffset + typeTable[methodTable[i].declaringType].nameIndex;
+            printf("%s::%s\n", typeName, name);
+        }
+        else
+        {
+            printf("%s\n", name);
+        }
     }
     printf("method count %d\n", count);
 }
