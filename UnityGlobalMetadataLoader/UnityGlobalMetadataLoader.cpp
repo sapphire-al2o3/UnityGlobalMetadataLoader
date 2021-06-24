@@ -738,7 +738,7 @@ void printString(const unsigned char* metadata, const T* header)
     {
         const unsigned char* string = metadata + header->stringOffset + i;
         int l = length(string);
-        printf("%s\n", string);
+        printf("%s [0x%X]\n", string, header->stringOffset + i);
         i += l;
     }
 }
