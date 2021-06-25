@@ -715,8 +715,6 @@ template <typename T>
 void printStringLiteral(const unsigned char* metadata, const T* header)
 {
     int stringLiteralTableCount = header->stringLiteralCount / sizeof(Il2CppStringLiteral);
-    printf("stringLiteral size %d\n", stringLiteralTableCount);
-
     Il2CppStringLiteral* stringLiteralTable = reinterpret_cast<Il2CppStringLiteral*>(metadata + header->stringLiteralOffset);
 
     // print stringLiteral
@@ -729,18 +727,22 @@ void printStringLiteral(const unsigned char* metadata, const T* header)
         printf("%s [0x%X]\n", stringLiteral, stringLiteralTable[i].dataIndex);
         delete[] stringLiteral;
     }
+    printf("stringLiteral count %d\n", stringLiteralTableCount);
 }
 
 template <typename T>
 void printString(const unsigned char* metadata, const T* header)
 {
+    int count = 0;
     for (int i = 0; i < header->stringCount; i++)
     {
         const unsigned char* string = metadata + header->stringOffset + i;
         int l = length(string);
         printf("%s [0x%X]\n", string, header->stringOffset + i);
         i += l;
+        count++;
     }
+    printf("string count %d\n", count);
 }
 
 template <typename T>
