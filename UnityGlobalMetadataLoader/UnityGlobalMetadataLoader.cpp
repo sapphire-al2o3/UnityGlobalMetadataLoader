@@ -863,6 +863,7 @@ int wmain(int argc, wchar_t* argv[])
     if (check->sanity != 0xFAB11BAF)
     {
         printf("sanity 0x%X\n", check->sanity);
+        printf("version %d\n", check->version);
         return 0;
     }
 
