@@ -11,6 +11,8 @@ Unity2018.4
 ## Example
 
 ```
+> UnityGlobalMetadataLoader.exe gloabl-metadata.dat
+
 size 1323264
 sanity FAB11BAF
 version 27
