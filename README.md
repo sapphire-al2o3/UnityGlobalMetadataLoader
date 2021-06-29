@@ -2,7 +2,7 @@
 
 Unityのglobal-metadata.datに含まれるヘッダを表示する
 
-## Unity Version
+## Target Unity Version
 
 Unity2020.3
 Unity2019.4
