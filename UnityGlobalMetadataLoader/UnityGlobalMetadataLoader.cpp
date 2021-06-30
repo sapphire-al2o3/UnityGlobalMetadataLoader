@@ -724,7 +724,7 @@ void printStringLiteral(const unsigned char* metadata, const T* header)
         stringLiteral[stringLiteralTable[i].length] = '\0';
         unsigned char* stringLiteralData = metadata + header->stringLiteralDataOffset + stringLiteralTable[i].dataIndex;
         memcpy(stringLiteral, stringLiteralData, stringLiteralTable[i].length);
-        printf("%s [0x%X]\n", stringLiteral, stringLiteralTable[i].dataIndex);
+        printf("%s [0x%X]\n", stringLiteral, header->stringLiteralDataOffset + stringLiteralTable[i].dataIndex);
         delete[] stringLiteral;
     }
     printf("stringLiteral count %d\n", stringLiteralTableCount);
