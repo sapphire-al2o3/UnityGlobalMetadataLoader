@@ -851,9 +851,9 @@ int wmain(int argc, wchar_t* argv[])
     size_t size = ftell(fp);
 
     unsigned char* metadata = new unsigned char[size];
-
+    
     fseek(fp, 0, SEEK_SET);
-    fread(metadata, size, 1, fp);
+    fread_s(metadata, size, size, 1, fp);
     fclose(fp);
 
     printf("size %d\n", (int)size);
