@@ -448,6 +448,76 @@ typedef struct Il2CppGlobalMetadataHeader_v27
 } Il2CppGlobalMetadataHeader_v27;
 #pragma pack(pop, p1)
 
+#pragma pack(push, p1,4)
+typedef struct Il2CppGlobalMetadataHeader_v29
+{
+    int32_t sanity;
+    int32_t version;
+    int32_t stringLiteralOffset; // string data for managed code
+    int32_t stringLiteralSize;
+    int32_t stringLiteralDataOffset;
+    int32_t stringLiteralDataSize;
+    int32_t stringOffset; // string data for metadata
+    int32_t stringSize;
+    int32_t eventsOffset; // Il2CppEventDefinition
+    int32_t eventsSize;
+    int32_t propertiesOffset; // Il2CppPropertyDefinition
+    int32_t propertiesSize;
+    int32_t methodsOffset; // Il2CppMethodDefinition
+    int32_t methodsSize;
+    int32_t parameterDefaultValuesOffset; // Il2CppParameterDefaultValue
+    int32_t parameterDefaultValuesSize;
+    int32_t fieldDefaultValuesOffset; // Il2CppFieldDefaultValue
+    int32_t fieldDefaultValuesSize;
+    int32_t fieldAndParameterDefaultValueDataOffset; // uint8_t
+    int32_t fieldAndParameterDefaultValueDataSize;
+    int32_t fieldMarshaledSizesOffset; // Il2CppFieldMarshaledSize
+    int32_t fieldMarshaledSizesSize;
+    int32_t parametersOffset; // Il2CppParameterDefinition
+    int32_t parametersSize;
+    int32_t fieldsOffset; // Il2CppFieldDefinition
+    int32_t fieldsSize;
+    int32_t genericParametersOffset; // Il2CppGenericParameter
+    int32_t genericParametersSize;
+    int32_t genericParameterConstraintsOffset; // TypeIndex
+    int32_t genericParameterConstraintsSize;
+    int32_t genericContainersOffset; // Il2CppGenericContainer
+    int32_t genericContainersSize;
+    int32_t nestedTypesOffset; // TypeDefinitionIndex
+    int32_t nestedTypesSize;
+    int32_t interfacesOffset; // TypeIndex
+    int32_t interfacesSize;
+    int32_t vtableMethodsOffset; // EncodedMethodIndex
+    int32_t vtableMethodsSize;
+    int32_t interfaceOffsetsOffset; // Il2CppInterfaceOffsetPair
+    int32_t interfaceOffsetsSize;
+    int32_t typeDefinitionsOffset; // Il2CppTypeDefinition
+    int32_t typeDefinitionsSize;
+    int32_t imagesOffset; // Il2CppImageDefinition
+    int32_t imagesSize;
+    int32_t assembliesOffset; // Il2CppAssemblyDefinition
+    int32_t assembliesSize;
+    int32_t fieldRefsOffset; // Il2CppFieldRef
+    int32_t fieldRefsSize;
+    int32_t referencedAssembliesOffset; // int32_t
+    int32_t referencedAssembliesSize;
+    int32_t attributeDataOffset;
+    int32_t attributeDataSize;
+    int32_t attributeDataRangeOffset;
+    int32_t attributeDataRangeSize;
+    int32_t unresolvedIndirectCallParameterTypesOffset; // TypeIndex
+    int32_t unresolvedIndirectCallParameterTypesSize;
+    int32_t unresolvedIndirectCallParameterRangesOffset; // Il2CppMetadataRange
+    int32_t unresolvedIndirectCallParameterRangesSize;
+    int32_t windowsRuntimeTypeNamesOffset; // Il2CppWindowsRuntimeTypeNamePair
+    int32_t windowsRuntimeTypeNamesSize;
+    int32_t windowsRuntimeStringsOffset; // const char*
+    int32_t windowsRuntimeStringsSize;
+    int32_t exportedTypeDefinitionsOffset; // TypeDefinitionIndex
+    int32_t exportedTypeDefinitionsSize;
+} Il2CppGlobalMetadataHeader;
+#pragma pack(pop, p1)
+
 template <typename T>
 struct GetMethodDefinition
 {
@@ -712,17 +782,28 @@ void printHeader(const Il2CppGlobalMetadataHeader_v27* header, int dataSize)
 }
 
 template <typename T>
+int getStringLiteralCount(const T* header)
+{
+    return header->stringLiteralCount;
+}
+
+int getStringLiteralCount(const Il2CppGlobalMetadataHeader_v29* header)
+{
+    return header->stringLiteralSize;
+}
+
+template <typename T>
 void printStringLiteral(const unsigned char* metadata, const T* header)
 {
-    int stringLiteralTableCount = header->stringLiteralCount / sizeof(Il2CppStringLiteral);
-    Il2CppStringLiteral* stringLiteralTable = reinterpret_cast<Il2CppStringLiteral*>(metadata + header->stringLiteralOffset);
+    int stringLiteralTableCount = getStringLiteralCount(header) / sizeof(Il2CppStringLiteral);
+    const Il2CppStringLiteral* stringLiteralTable = reinterpret_cast<const Il2CppStringLiteral*>(metadata + header->stringLiteralOffset);
 
     // print stringLiteral
     for (int i = 0; i < stringLiteralTableCount; i++)
     {
         char* stringLiteral = new char[stringLiteralTable[i].length + 1];
         stringLiteral[stringLiteralTable[i].length] = '\0';
-        unsigned char* stringLiteralData = metadata + header->stringLiteralDataOffset + stringLiteralTable[i].dataIndex;
+        const unsigned char* stringLiteralData = metadata + header->stringLiteralDataOffset + stringLiteralTable[i].dataIndex;
         memcpy(stringLiteral, stringLiteralData, stringLiteralTable[i].length);
         printf("%s [0x%X]\n", stringLiteral, header->stringLiteralDataOffset + stringLiteralTable[i].dataIndex);
         delete[] stringLiteral;
@@ -731,10 +812,21 @@ void printStringLiteral(const unsigned char* metadata, const T* header)
 }
 
 template <typename T>
+int getStringCount(const T* header)
+{
+    return header->stringCount;
+}
+
+int getStringCount(const Il2CppGlobalMetadataHeader_v29* header)
+{
+    return header->stringSize;
+}
+
+template <typename T>
 void printString(const unsigned char* metadata, const T* header)
 {
     int count = 0;
-    for (int i = 0; i < header->stringCount; i++)
+    for (int i = 0; i < getStringCount(header); i++)
     {
         const unsigned char* string = metadata + header->stringOffset + i;
         int l = length(string);
@@ -867,7 +959,33 @@ int wmain(int argc, wchar_t* argv[])
         return 0;
     }
 
-    if (check->version == 27)
+    if (check->version == 29)
+    {
+        Il2CppGlobalMetadataHeader_v29* header_v29 = reinterpret_cast<Il2CppGlobalMetadataHeader_v29*>(metadata);
+        
+        printf("header size %d byte\n", sizeof(Il2CppGlobalMetadataHeader_v29));
+
+        if (printStringLiteralOption)
+        {
+            printStringLiteral(metadata, header_v29);
+        }
+
+        if (printStringOption)
+        {
+            printString(metadata, header_v29);
+        }
+
+        //if (printMethodOption)
+        //{
+        //    printMethod(metadata, header_v29);
+        //}
+
+        //if (printTypeOption)
+        //{
+        //    printType(metadata, header_v29);
+        //}
+    }
+    else if (check->version == 27)
     {
         Il2CppGlobalMetadataHeader_v27* header_v27 = reinterpret_cast<Il2CppGlobalMetadataHeader_v27*>(metadata);
         int dataSize = getTotalSize(header_v27);
