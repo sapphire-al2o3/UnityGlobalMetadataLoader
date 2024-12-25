@@ -524,6 +524,13 @@ struct GetMethodDefinition
 };
 
 template <>
+struct GetMethodDefinition<Il2CppGlobalMetadataHeader_v29>
+{
+    using Method = Il2CppMethodDefinition_v27;
+    using Type = Il2CppTypeDefinition_v27;
+};
+
+template <>
 struct GetMethodDefinition<Il2CppGlobalMetadataHeader_v27>
 {
     using Method = Il2CppMethodDefinition_v27;
@@ -838,10 +845,32 @@ void printString(const unsigned char* metadata, const T* header)
 }
 
 template <typename T>
+int getTypeDefinitionsCount(const T* header)
+{
+    return header->typeDefinitionsCount;
+}
+
+int getTypeDefinitionsCount(const Il2CppGlobalMetadataHeader_v29* header)
+{
+    return header->typeDefinitionsSize;
+}
+
+template <typename T>
 bool checkType(const unsigned char* metadata, const T* header)
 {
     using V = typename GetMethodDefinition<T>::Type;
-    return (header->typeDefinitionsCount % sizeof(V)) == 0;
+    return (getTypeDefinitionsCount(header) % sizeof(V)) == 0;
+}
+
+template <typename T>
+int getMethodsCount(const T* header)
+{
+    return header->methodsCount;
+}
+
+int getMethodsCount(const Il2CppGlobalMetadataHeader_v29* header)
+{
+    return header->methodsSize;
 }
 
 template <typename T>
@@ -849,7 +878,7 @@ void printMethod(const unsigned char* metadata, const T* header)
 {
     using U = typename GetMethodDefinition<T>::Method;
     using V = typename GetMethodDefinition<T>::Type;
-    int count = header->methodsCount / sizeof(U);
+    int count = getMethodsCount(header) / sizeof(U);
     auto methodTable = reinterpret_cast<const U*>(metadata + header->methodsOffset);
     auto typeTable = reinterpret_cast<const V*>(metadata + header->typeDefinitionsOffset);
     bool validTypeTable = checkType(metadata, header);
@@ -975,10 +1004,10 @@ int wmain(int argc, wchar_t* argv[])
             printString(metadata, header_v29);
         }
 
-        //if (printMethodOption)
-        //{
-        //    printMethod(metadata, header_v29);
-        //}
+        if (printMethodOption)
+        {
+            printMethod(metadata, header_v29);
+        }
 
         //if (printTypeOption)
         //{
