@@ -903,7 +903,7 @@ template <typename T>
 void printType(const unsigned char* metadata, const T* header)
 {
     using V = typename GetMethodDefinition<T>::Type;
-    int count = header->typeDefinitionsCount / sizeof(V);
+    int count = getTypeDefinitionsCount(header) / sizeof(V);
     auto typeTable = reinterpret_cast<const V*>(metadata + header->typeDefinitionsOffset);
 
     for (int i = 0; i < count; i++)
@@ -1009,10 +1009,10 @@ int wmain(int argc, wchar_t* argv[])
             printMethod(metadata, header_v29);
         }
 
-        //if (printTypeOption)
-        //{
-        //    printType(metadata, header_v29);
-        //}
+        if (printTypeOption)
+        {
+            printType(metadata, header_v29);
+        }
     }
     else if (check->version == 27)
     {
@@ -1028,7 +1028,7 @@ int wmain(int argc, wchar_t* argv[])
         
         if (printStringLiteralOption)
         {
-            printString(metadata, header_v27);
+            printStringLiteral(metadata, header_v27);
         }
 
         if (printStringOption)
@@ -1062,7 +1062,7 @@ int wmain(int argc, wchar_t* argv[])
 
             if (printStringLiteralOption)
             {
-                printString(metadata, header);
+                printStringLiteral(metadata, header);
             }
 
             if (printStringOption)
@@ -1093,7 +1093,7 @@ int wmain(int argc, wchar_t* argv[])
 
             if (printStringLiteralOption)
             {
-                printString(metadata, header_v24_2018_4);
+                printStringLiteral(metadata, header_v24_2018_4);
             }
 
             if (printStringOption)
