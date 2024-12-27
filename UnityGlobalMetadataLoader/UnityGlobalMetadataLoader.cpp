@@ -927,6 +927,10 @@ int wmain(int argc, wchar_t* argv[])
     if (argc < 2)
     {
         std::cout << argc << std::endl;
+        printf("-l string lteral\n");
+        printf("-s string\n");
+        printf("-m method\n");
+        printf("-t type\n");
         return 0;
     }
 
